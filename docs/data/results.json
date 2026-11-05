@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "title": "Hopper Field Notes",
+    "author": "LokeshVenkatachalam",
+    "repositoryUrl": "https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge",
+    "branch": "main",
+    "siteUrl": "https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"
+  },
+  "leaderboardSnapshotAt": "2026-11-05T20:28:37Z",
+  "campaign": {
+    "startedAt": "2026-11-05T06:26:06.830+00:00",
+    "closedAt": "2026-11-05T08:00:00+00:00",
+    "status": "closed",
+    "gpu": "NVIDIA H200",
+    "localGpuUsed": false,
+    "runCount": 79,
+    "scoredCount": 18,
+    "checkCount": 61
+  },
+  "accountTotals": {
+    "date": "2026-11-05",
+    "scoredCount": 20,
+    "checkCount": 72,
+    "runCount": 92
+  },
+  "kernels": [
+    {
+      "id": "muse_bf16_proj",
+      "slug": "bf16-projections",
+      "title": "BF16 projections",
+      "summary": "Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions.",
+      "scored": {
+        "jobId": "c9e908a969fc4e40",
+        "speedup": 1.131876248733277,
+        "ci95": [
+          1.1148981050022777,
+          1.148854392464276
+        ],
+        "scoreUs": 4267.957743089247,
+        "baselineUs": 4830.8
+      },
+      "check": {
+        "jobId": "cb3815b0cc0f42c9",
+        "speedup": 1.1277672580904239,
+        "ci95": [
+          1.1108507492190676,
+          1.1446837669617802
+        ]
+      },
+      "ranking": {
+        "rank": 1510,
+        "placed": 1746,
+        "bestSpeedup": 1.7277
+      },
+      "campaignCounts": {
+        "scored": 4,
+        "checks": 17,
+        "runs": 21
+      },
+      "accountCounts": {
+        "scored": 5,
+        "checks": 20,
+        "runs": 25
+      },
+      "firstCampaignScoredSpeedup": 1.1081016473583192,
+      "source": {
+        "path": "kernels/muse_bf16_proj/submission.py",
+        "sha256": "af9c07caaa1227dfe0c6213071f342c2582e02c96440b287a1a8b03e869adfb5",
+        "pairedCheckJobId": "84c15c3cb1bb4f73",
+        "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
+        "reusedPublicSource": false,
+        "provenancePath": "PROVENANCE.md"
+      },
+      "story": {
+        "intro": [
+          "This workload mixes low-M BF16 GEMMs with a router path whose FP32 weights are represented as BF16 high and low parts. The retained scored source beat SGLang by 1.131876248733277x on the hosted H200 judge.",
+          "The campaign improved from a first scored result near 1.1081x, but remained below the provisional 1.7277x leader."
+        ],
+        "approach": [
+          "Dispatch uses a pinned Hopper BF16 GEMV path for selected M=1 projections, custom split-K kernels for profitable pooler and sliced-unpooler shapes, and the official SGLang dispatch elsewhere.",
+          "The router preserves BF16 high-plus-low weight semantics, accumulates in FP32, uses full-M tiles, and stores partials split-major for contiguous reduction traffic."
+        ],
+        "lessons": [
+          "Changing router partials from output-major to split-major removed a measured strided-reduction penalty.",
+          "The profitable custom cutovers were narrow: pooler through M=8 and the sliced N=1024 unpooler.",
+          "The highest campaign check used a different candidate than the retained scored source, so best check and paired source check are reported separately."
+        ],
+        "failures": [
+          "A direct scalar Triton reduction reached only 0.4877x, and a low-split BF16 attempt reached 0.8161x.",
+          "Replacing the workspace reduction with FP32 atomics passed correctness but regressed to 1.1134x because contention hurt larger router shapes."
+        ],
+        "caveats": [
+          "The retained dispatch is shape-specific and was measured only through the official challenge shape set on a hosted NVIDIA H200.",
+          "Rank 1510 of 1746 is a provisional public snapshot, not a final award or leaderboard win."
+        ]
+      },
+      "references": [
+        {
+          "label": "Open Kernel Challenge problem",
+          "url": "https://openkernelchallenge.dev/problems/muse_bf16_proj"
+        },
+        {
+          "label": "Pinned SGLang Hopper BF16 GEMV",
+          "url": "https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/gemm/hopper_bf16_gemv.py"
+        },
+        {
+          "label": "CUTLASS efficient GEMM guide",
+          "url": "https://docs.nvidia.com/cutlass/latest/media/docs/cpp/efficient_gemm.html"
+        }
+      ]
+    },
+    {
+      "id": "muse_attention_decode",
+      "slug": "attention-decode",
+      "title": "Attention decode",
+      "summary": "Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention.",
+      "scored": {
+        "jobId": "b45e9263f36b4141",
+        "speedup": 1.151975903562266,
+        "ci95": [
+          1.1346962650088321,
+          1.1692555421157
+        ],
+        "scoreUs": 3269.426025625566,
+        "baselineUs": 3766.3
+      },
+      "check": {
+        "jobId": "31188b3e4b2d482b",
+        "speedup": 1.1524727843278246,
+        "ci95": [
+          1.1351856925629071,
+          1.169759876092742
+        ]
+      },
+      "ranking": {
+        "rank": 1278,
+        "placed": 1379,
+        "bestSpeedup": 3.3389
+      },
+      "campaignCounts": {
+        "scored": 3,
+        "checks": 9,
+        "runs": 12
+      },
+      "accountCounts": {
+        "scored": 3,
+        "checks": 12,
+        "runs": 15
+      },
+      "firstCampaignScoredSpeedup": 1.129312485293169,
+      "source": {
+        "path": "kernels/muse_attention_decode/submission.py",
+        "sha256": "ac3a509b872f775619e91084c71e08eea1cfc99aad7630790842b2334ce4ca19",
+        "pairedCheckJobId": "31188b3e4b2d482b",
+        "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
+        "reusedPublicSource": false,
+        "provenancePath": "PROVENANCE.md"
+      },
+      "story": {
+        "intro": [
+          "Attention decode has a small preparation boundary around a much larger paged attention reduction. The retained source beat SGLang by 1.151975903562266x while preserving dense visibility, scaled-cache, and live-slot semantics.",
+          "The final public snapshot placed the result 1278 of 1379, behind a provisional 3.3389x leader."
+        ],
+        "approach": [
+          "One Triton preparation kernel fuses Q/K RMS normalization, optional interleaved RoPE, FP8 query conversion, and scaled K/V cache insertion.",
+          "The retained path uses fixed uniform-query shapes where valid and reuses compatible scheduler metadata so FlashAttention-3 avoids an extra prepare step."
+        ],
+        "lessons": [
+          "Removing launch and metadata overhead helped verify and sliding-window shapes, while full B16/B32 attention remained dominated by the FlashAttention-3 main kernel.",
+          "The fixed-query metadata variant produced the strongest check at 1.1525x and the retained score at 1.1520x.",
+          "Several small point-estimate changes had overlapping confidence intervals and were not treated as proven improvements."
+        ],
+        "failures": [
+          "The first fused preparation failed compilation because Triton constants were not constexpr, so it has null performance fields in the public ledger.",
+          "A correct custom split-KV Triton gather reached only 0.3974x; random page-1 gathers and small matrix tiles did not replace the Hopper-native attention kernel effectively."
+        ],
+        "caveats": [
+          "The fixed-query choice depends on the challenge's uniform query lengths and exact cache contract.",
+          "The ranking is provisional, and this result did not approach or surpass the public leader."
+        ]
+      },
+      "references": [
+        {
+          "label": "Open Kernel Challenge problem",
+          "url": "https://openkernelchallenge.dev/problems/muse_attention_decode"
+        },
+        {
+          "label": "FlashAttention-3",
+          "url": "https://arxiv.org/abs/2407.08608"
+        },
+        {
+          "label": "Pinned SGLang fused Q/K normalization",
+          "url": "https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/muse_spark_v12/fused_qk_norm.py"
+        }
+      ]
+    },
+    {
+      "id": "muse_moe_w4a16",
+      "slug": "routed-experts",
+      "title": "Routed experts",
+      "summary": "Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation.",
+      "scored": {
+        "jobId": "9c6a4cb6794448ba",
+        "speedup": 1.3402887683867017,
+        "ci95": [
+          1.3201844368609013,
+          1.3603930999125022
+        ],
+        "scoreUs": 10034.031708098162,
+        "baselineUs": 13448.5
+      },
+      "check": {
+        "jobId": "7cbc989dbf43455b",
+        "speedup": 1.340147019786917,
+        "ci95": [
+          1.3200448144901131,
+          1.3602492250837206
+        ]
+      },
+      "ranking": {
+        "rank": 1131,
+        "placed": 1425,
+        "bestSpeedup": 2.8438
+      },
+      "campaignCounts": {
+        "scored": 2,
+        "checks": 14,
+        "runs": 16
+      },
+      "accountCounts": {
+        "scored": 2,
+        "checks": 16,
+        "runs": 18
+      },
+      "firstCampaignScoredSpeedup": 1.1672684527822748,
+      "source": {
+        "path": "kernels/muse_moe_w4a16/submission.py",
+        "sha256": "157e907cd37e9060e04a6dfda88cc3bde9cb2af2b4a2824717cecbaf3031106d",
+        "pairedCheckJobId": "7cbc989dbf43455b",
+        "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
+        "reusedPublicSource": false,
+        "provenancePath": "PROVENANCE.md"
+      },
+      "story": {
+        "intro": [
+          "The routed-expert problem combines top-8 routing over 256 global experts with NVFP4 weights and BF16 activations on an EP8 rank. The retained source beat SGLang by 1.3402887683867017x.",
+          "It placed 1131 of 1425 in the current provisional snapshot, behind a 2.8438x leader."
+        ],
+        "approach": [
+          "The kernel retains the lossless SGLang Marlin repack and chooses block 8 through 16 tokens, then block 16 for larger batches.",
+          "A Triton program maps global expert IDs to the local 0-31 range. A fused finalizer performs per-expert RMS normalization, route weighting, and FP32 accumulation."
+        ],
+        "lessons": [
+          "Routing, alignment, and finalization changes moved the aggregate from a first scored 1.1673x result to 1.3403x.",
+          "After those changes, the two Marlin GEMMs still consumed roughly 94-95% of large-shape GPU time.",
+          "Every official scored shape in the retained check exceeded the SGLang baseline."
+        ],
+        "failures": [
+          "A persistent Triton SIMT GEMV that decoded canonical NVFP4 directly passed correctness but collapsed to 0.2660x.",
+          "Fixed block 32, route materialization, and split W13/W2 block policies regressed part of the shape mix and were rejected."
+        ],
+        "caveats": [
+          "Preparation assumes EP8 with local experts 0-31, and the verified timing range ends at 256 routed tokens.",
+          "H200 does not provide Blackwell native NVFP4 tensor-core MMA; the implementation dequantizes for supported Hopper compute."
+        ]
+      },
+      "references": [
+        {
+          "label": "Open Kernel Challenge problem",
+          "url": "https://openkernelchallenge.dev/problems/muse_moe_w4a16"
+        },
+        {
+          "label": "Pinned SGLang Marlin MoE wrapper",
+          "url": "https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/moe/moe_wna16_marlin.py"
+        },
+        {
+          "label": "Triton grouped GEMM tutorial",
+          "url": "https://triton-lang.org/main/getting-started/tutorials/08-grouped-gemm.html"
+        }
+      ]
+    },
+    {
+      "id": "muse_decode_layer",
+      "slug": "decoder-layer",
+      "title": "Decoder layer",
+      "summary": "Whole-layer fusion around attention preparation, expert routing, tuned Marlin blocks, and normalization boundaries.",
+      "scored": {
+        "jobId": "9187326d522142a2",
+        "speedup": 1.1855883514963717,
+        "ci95": [
+          1.167804526223926,
+          1.203372176768817
+        ],
+        "scoreUs": 19079.387859580558,
+        "baselineUs": 22620.3
+      },
+      "check": {
+        "jobId": "e6bcc1d8cd1a44a7",
+        "speedup": 1.1643985977658828,
+        "ci95": [
+          1.1469326187993947,
+          1.181864576732371
+        ]
+      },
+      "ranking": {
+        "rank": 1172,
+        "placed": 1299,
+        "bestSpeedup": 2.6144
+      },
+      "campaignCounts": {
+        "scored": 7,
+        "checks": 13,
+        "runs": 20
+      },
+      "accountCounts": {
+        "scored": 8,
+        "checks": 14,
+        "runs": 22
+      },
+      "firstCampaignScoredSpeedup": 1.0817018679156047,
+      "source": {
+        "path": "kernels/muse_decode_layer/submission.py",
+        "sha256": "34ae067a20a1c69dd52acfcb52d74e164499de9af7971e78f4e0717a71beddaa",
+        "pairedCheckJobId": "027f7d1e62ed4951",
+        "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
+        "reusedPublicSource": false,
+        "provenancePath": "PROVENANCE.md"
+      },
+      "story": {
+        "intro": [
+          "The whole decoder layer exposes interactions that primitive-only benchmarks miss: attention preparation, paged attention, dense projections, routed experts, and residual normalization share the measured score. The retained source beat SGLang by 1.1855883514963717x.",
+          "Its current public position is 1172 of 1299 behind a provisional 2.6144x leader."
+        ],
+        "approach": [
+          "The retained source fuses Q/K normalization, RoPE, FP8 query conversion, and cache stores, then preserves the proven attention implementation.",
+          "The expert section uses shape-tuned Marlin blocks, a Triton pre-expert RMS normalization, fused global-to-local expert mapping, and the established post-expert boundary."
+        ],
+        "lessons": [
+          "Isolated block-size changes raised the measured check from 1.0781x to 1.1343x before boundary fusion added the remaining gain.",
+          "The exact scored source's paired check was 1.1627x; a later four-warp check reached 1.1644x but did not exceed the retained scored measurement.",
+          "Primitive wins required whole-layer validation because attention dominates long full-context shapes while Marlin dominates sliding and verify shapes."
+        ],
+        "failures": [
+          "The first fused candidate failed Triton compilation because a global FP8 constant was not constexpr and therefore has no timing metrics.",
+          "Block 8 everywhere, T=256 block 16, and T=32 block 32 each regressed important shapes."
+        ],
+        "caveats": [
+          "The last check was accepted before the deadline but finished after close and remained off-board; it is not presented as a scored improvement.",
+          "The result is tied to the official H200 shape mix and pinned runtime components, and the rank remains provisional."
+        ]
+      },
+      "references": [
+        {
+          "label": "Open Kernel Challenge problem",
+          "url": "https://openkernelchallenge.dev/problems/muse_decode_layer"
+        },
+        {
+          "label": "Pinned SGLang fused normalization boundary",
+          "url": "https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/muse_spark_v12/fused_norm_residual.py"
+        },
+        {
+          "label": "CUTLASS Hopper grouped GEMM examples",
+          "url": "https://github.com/NVIDIA/cutlass/tree/main/examples/57_hopper_grouped_gemm"
+        }
+      ]
+    },
+    {
+      "id": "muse_prefill_layer",
+      "slug": "prefill-layer",
+      "title": "Prefill layer",
+      "summary": "Attributed public Hopper FMHA and persistent grouped W4A16 layer integration retained under its upstream licenses and notices.",
+      "scored": {
+        "jobId": "23b1cc7e2a6040af",
+        "speedup": 1.9191900674402353,
+        "ci95": [
+          1.8904022164286318,
+          1.9479779184518387
+        ],
+        "scoreUs": 201858.01634369078,
+        "baselineUs": 387403.9
+      },
+      "check": {
+        "jobId": "1342300976314ba1",
+        "speedup": 1.9125244996506285,
+        "ci95": [
+          1.883836632155869,
+          1.9412123671453878
+        ]
+      },
+      "ranking": {
+        "rank": 107,
+        "placed": 898,
+        "bestSpeedup": 2.1471
+      },
+      "campaignCounts": {
+        "scored": 2,
+        "checks": 8,
+        "runs": 10
+      },
+      "accountCounts": {
+        "scored": 2,
+        "checks": 10,
+        "runs": 12
+      },
+      "firstCampaignScoredSpeedup": 1.7858992191262522,
+      "source": {
+        "path": "kernels/muse_prefill_layer/submission.py",
+        "sha256": "f1807a75ec056b7f3874d4fce02331ca0043ac38a45af7710a8287a252421a92",
+        "pairedCheckJobId": "1342300976314ba1",
+        "license": "Apache-2.0 reused/adapted public source with the full upstream NOTICE and applicable MIT notice retained",
+        "reusedPublicSource": true,
+        "provenancePath": "PROVENANCE.md"
+      },
+      "story": {
+        "intro": [
+          "The retained prefill kernel is adapted/reused public work from team keell0renz and its vjeux, alygg77, and ZhimaoL lineages. It is not presented as an independently original kernel.",
+          "The exact retained source beat SGLang by 1.9191900674402353x and placed 107 of 898 in the current provisional snapshot, behind a 2.1471x leader."
+        ],
+        "approach": [
+          "The integration combines ZhimaoL's N72 FP8-query FMHA, pinned cuBLASLt dense projection plans, fused layer boundaries, and a persistent grouped W4A16 implementation that losslessly repacks NVFP4 and dequantizes into BF16 WGMMA operands.",
+          "The publication preserves the exact upstream-attributed bytes, full Apache-2.0 license, integrated NOTICE, and transitively applicable NathenFernandes MIT notice text."
+        ],
+        "lessons": [
+          "The public N72 FMHA and LT2 integration raised the campaign from a first scored 1.7859x result to 1.9192x.",
+          "Long full-context attention improved materially, leaving the persistent grouped expert GEMM as the dominant measured primitive on the largest token counts.",
+          "Later tuning checks were regressions and are documented as such rather than relabeled as winners."
+        ],
+        "failures": [
+          "Spread expert tile ordering on the retained base reached 1.9069x, below the exact public source.",
+          "A fresh-thread context wrapper reached 1.9023x, and separating the large-M expert phases reached 1.8915x; neither beat the retained source."
+        ],
+        "caveats": [
+          "This source is public licensed reuse, not an original-authorship claim. The upstream copyright and attribution notices remain controlling for incorporated portions.",
+          "The campaign did not prove a new local tuning improvement over the retained keell0renz source, and the ranking is provisional."
+        ]
+      },
+      "references": [
+        {
+          "label": "Open Kernel Challenge problem",
+          "url": "https://openkernelchallenge.dev/problems/muse_prefill_layer"
+        },
+        {
+          "label": "Pinned keell0renz source",
+          "url": "https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/kernels/muse_prefill_layer.py"
+        },
+        {
+          "label": "Pinned upstream NOTICE",
+          "url": "https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/NOTICE"
+        },
+        {
+          "label": "ZhimaoL SGLang FMHA lineage",
+          "url": "https://github.com/ZhimaoL/sglang"
+        }
+      ]
+    }
+  ]
+}

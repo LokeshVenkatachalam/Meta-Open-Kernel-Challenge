@@ -1,0 +1,1261 @@
+{
+  "schemaVersion": 1,
+  "scope": "five-agent-campaign",
+  "runs": [
+    {
+      "id": "a6c9bcb9634840d0",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:33:59.046955+00:00",
+      "finishedAt": "2026-11-05T06:35:14.343457+00:00",
+      "status": "done",
+      "passed": false,
+      "speedup": null,
+      "ci95": null,
+      "scoreUs": null,
+      "baselineUs": null
+    },
+    {
+      "id": "9141fc0077224fd3",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:35:03.227097+00:00",
+      "finishedAt": "2026-11-05T06:36:29.326347+00:00",
+      "status": "done",
+      "passed": false,
+      "speedup": null,
+      "ci95": null,
+      "scoreUs": null,
+      "baselineUs": null
+    },
+    {
+      "id": "18bcf4766eec460b",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:35:29.217788+00:00",
+      "finishedAt": "2026-11-05T06:40:38.336593+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.7913648954924566,
+      "ci95": [
+        1.7644944220600698,
+        1.8182353689248432
+      ],
+      "scoreUs": 216261.85763425962,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "1b847423150d47b7",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:35:41.607099+00:00",
+      "finishedAt": "2026-11-05T06:38:29.060527+00:00",
+      "status": "done",
+      "passed": false,
+      "speedup": null,
+      "ci95": null,
+      "scoreUs": null,
+      "baselineUs": null
+    },
+    {
+      "id": "10cdd1efb0344bd8",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:35:49.195802+00:00",
+      "finishedAt": "2026-11-05T06:43:04.513851+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.13475156165877,
+      "ci95": [
+        1.1177302882338884,
+        1.1517728350836514
+      ],
+      "scoreUs": 3319.0524933003444,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "cff57273a7c843c3",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:37:12.868524+00:00",
+      "finishedAt": "2026-11-05T06:39:46.945535+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1702540660465692,
+      "ci95": [
+        1.1527002550558707,
+        1.1878078770372678
+      ],
+      "scoreUs": 11491.948962358767,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "9101ab6c5b394e67",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:38:39.300226+00:00",
+      "finishedAt": "2026-11-05T06:40:38.352615+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.4877177079069206,
+      "ci95": [
+        0.4804019422883168,
+        0.49503347352552435
+      ],
+      "scoreUs": 9904.909995439295,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "9d638f6f5d004693",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:39:09.630249+00:00",
+      "finishedAt": "2026-11-05T06:42:17.367172+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0781310421983343,
+      "ci95": [
+        1.0619590765653593,
+        1.0943030078313092
+      ],
+      "scoreUs": 20981.030240884895,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "cf00286f1f494f3a",
+      "problem": "muse_moe_w4a16",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:40:25.206295+00:00",
+      "finishedAt": "2026-11-05T06:42:32.502604+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1672684527822748,
+      "ci95": [
+        1.1497594259905406,
+        1.1847774795740087
+      ],
+      "scoreUs": 11521.342813595671,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "245960c4a7534597",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:42:54.581564+00:00",
+      "finishedAt": "2026-11-05T06:44:55.714777+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.9760723073535336,
+      "ci95": [
+        0.9614312227432306,
+        0.9907133919638365
+      ],
+      "scoreUs": 4949.2234987159445,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "3bebc931083041bd",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:43:08.904416+00:00",
+      "finishedAt": "2026-11-05T06:45:43.535310+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1672494858169846,
+      "ci95": [
+        1.1497407435297298,
+        1.1847582281042393
+      ],
+      "scoreUs": 11521.530027136476,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "71ce659ab40a4538",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:43:18.091862+00:00",
+      "finishedAt": "2026-11-05T06:47:31.501916+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0817018679156047,
+      "ci95": [
+        1.0654763398968707,
+        1.0979273959343387
+      ],
+      "scoreUs": 20911.769380216003,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "7739048d062d4167",
+      "problem": "muse_attention_decode",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:43:33.012630+00:00",
+      "finishedAt": "2026-11-05T06:51:12.954382+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.129312485293169,
+      "ci95": [
+        1.1123727980137714,
+        1.1462521725725665
+      ],
+      "scoreUs": 3335.0379536645873,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "2fce51bd17ca4938",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:43:59.681749+00:00",
+      "finishedAt": "2026-11-05T06:51:30.534047+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.791743104661377,
+      "ci95": [
+        1.7648669580914562,
+        1.8186192512312975
+      ],
+      "scoreUs": 216216.2081116064,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "eb087089fa9d4fb8",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:45:42.798260+00:00",
+      "finishedAt": "2026-11-05T06:49:20.310256+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.897843106203876,
+      "ci95": [
+        0.8843754596108179,
+        0.9113107527969341
+      ],
+      "scoreUs": 5380.450065964037,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "4d4efec69d244155",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:46:09.503637+00:00",
+      "finishedAt": "2026-11-05T06:49:51.212047+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.2694726758774353,
+      "ci95": [
+        1.2504305857392737,
+        1.2885147660155967
+      ],
+      "scoreUs": 10593.768779390744,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "bd3f71cf91d8491a",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:48:36.442359+00:00",
+      "finishedAt": "2026-11-05T06:51:13.011280+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0354651678868945,
+      "ci95": [
+        1.019933190368591,
+        1.0509971454051978
+      ],
+      "scoreUs": 21845.54411053917,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "e1817afb915f4df0",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:49:53.053731+00:00",
+      "finishedAt": "2026-11-05T06:51:43.359797+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0711403787936722,
+      "ci95": [
+        1.0550732731117671,
+        1.0872074844755772
+      ],
+      "scoreUs": 4509.959754705998,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "33937a462d6f411e",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:50:13.335759+00:00",
+      "finishedAt": "2026-11-05T06:52:49.786992+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.073775799421909,
+      "ci95": [
+        1.0576691624305803,
+        1.0898824364132376
+      ],
+      "scoreUs": 12524.495343665129,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "2cb5c5cca5e44e0b",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:51:45.932766+00:00",
+      "finishedAt": "2026-11-05T06:54:59.795511+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.09796649205983,
+      "ci95": [
+        1.0814969946789326,
+        1.1144359894407274
+      ],
+      "scoreUs": 20601.99483643931,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "fcb44c93d29e4b83",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:52:32.800393+00:00",
+      "finishedAt": "2026-11-05T06:54:59.800068+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1037174666584595,
+      "ci95": [
+        1.0871617046585826,
+        1.1202732286583363
+      ],
+      "scoreUs": 4376.844750518811,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "c43f7aba5ae84778",
+      "problem": "muse_prefill_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:52:43.794002+00:00",
+      "finishedAt": "2026-11-05T06:58:59.827534+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.7858992191262522,
+      "ci95": [
+        1.7591107308393583,
+        1.8126877074131458
+      ],
+      "scoreUs": 216923.71879166656,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "35e307217bfc404f",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:53:35.438057+00:00",
+      "finishedAt": "2026-11-05T06:56:18.916684+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.290599680060779,
+      "ci95": [
+        1.2712406848598674,
+        1.3099586752616907
+      ],
+      "scoreUs": 10420.349708568547,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "d7e1a97d2ef944bb",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:54:03.070291+00:00",
+      "finishedAt": "2026-11-05T07:01:31.407854+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.39735003640730016,
+      "ci95": [
+        0.39138978586119066,
+        0.4055073089325713
+      ],
+      "scoreUs": 9478.544494555897,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "870d8dbcd1534ec6",
+      "problem": "muse_bf16_proj",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:55:24.710781+00:00",
+      "finishedAt": "2026-11-05T06:59:15.346995+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1081016473583192,
+      "ci95": [
+        1.0914801226479445,
+        1.1247231720686939
+      ],
+      "scoreUs": 4359.527856958322,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "58a2b33b12344d61",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T06:55:26.040858+00:00",
+      "finishedAt": "2026-11-05T07:00:57.714230+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1023652339530285,
+      "ci95": [
+        1.085829755443733,
+        1.1189007124623238
+      ],
+      "scoreUs": 20519.787184220873,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "96f672a0e6834436",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T06:56:44.095300+00:00",
+      "finishedAt": "2026-11-05T07:00:39.665846+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.291185522786107,
+      "ci95": [
+        1.2718177399443156,
+        1.3105533056278986
+      ],
+      "scoreUs": 10415.62173883499,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "660c37c1af954af4",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:00:14.746068+00:00",
+      "finishedAt": "2026-11-05T07:05:25.130621+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.7930089453956148,
+      "ci95": [
+        1.7661138112146806,
+        1.8199040795765489
+      ],
+      "scoreUs": 216063.56231230183,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "d68fe464036b48e3",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:00:49.436848+00:00",
+      "finishedAt": "2026-11-05T07:03:22.855103+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.8160730620332967,
+      "ci95": [
+        0.8038319661027972,
+        0.828314157963796
+      ],
+      "scoreUs": 5919.568020005173,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "38076fdbfa094a09",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:01:18.622073+00:00",
+      "finishedAt": "2026-11-05T07:05:39.889850+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.111993084142392,
+      "ci95": [
+        1.095313187880256,
+        1.1286729804045277
+      ],
+      "scoreUs": 20342.122916569726,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "b063c03ccb254451",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:02:43.638845+00:00",
+      "finishedAt": "2026-11-05T07:08:11.964371+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.3091009192364396,
+      "ci95": [
+        1.289464405447893,
+        1.328737433024986
+      ],
+      "scoreUs": 10273.08116767966,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "4646cb6b5bda40c4",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:03:45.733911+00:00",
+      "finishedAt": "2026-11-05T07:10:36.269715+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1502494540925405,
+      "ci95": [
+        1.1329957122811525,
+        1.1675031959039286
+      ],
+      "scoreUs": 3274.3332210240646,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "fd82d3007e674623",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:03:53.977599+00:00",
+      "finishedAt": "2026-11-05T07:07:37.960669+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0732728366188773,
+      "ci95": [
+        1.057173744069594,
+        1.0893719291681603
+      ],
+      "scoreUs": 4500.999033217341,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "5a5c254a536748a6",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:06:19.696373+00:00",
+      "finishedAt": "2026-11-05T07:12:09.702209+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.799748624744253,
+      "ci95": [
+        1.772752395373089,
+        1.8267448541154165
+      ],
+      "scoreUs": 215254.4498013164,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "6dbd77eea26a4365",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:06:27.876567+00:00",
+      "finishedAt": "2026-11-05T07:10:36.314847+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1102908361430057,
+      "ci95": [
+        1.0936364736008606,
+        1.1269451986851506
+      ],
+      "scoreUs": 20373.310544991746,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "f515224099424ccb",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:08:41.061975+00:00",
+      "finishedAt": "2026-11-05T07:10:36.319601+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1116159310433058,
+      "ci95": [
+        1.0949416920776562,
+        1.1282901700089554
+      ],
+      "scoreUs": 4345.745562917634,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "bfb20845985341e1",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:08:58.309432+00:00",
+      "finishedAt": "2026-11-05T07:14:07.083826+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.3214796352752876,
+      "ci95": [
+        1.3016574407461583,
+        1.3413018298044168
+      ],
+      "scoreUs": 10176.849980134912,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "356fc9d7e2b74a52",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:11:26.624644+00:00",
+      "finishedAt": "2026-11-05T07:14:07.126812+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1254204436319644,
+      "ci95": [
+        1.1085391369774849,
+        1.1423017502864437
+      ],
+      "scoreUs": 20099.421623264294,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "bc821c864a1e47a6",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:11:27.093590+00:00",
+      "finishedAt": "2026-11-05T07:13:48.171269+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1238359529928883,
+      "ci95": [
+        1.106978413697995,
+        1.1406934922877816
+      ],
+      "scoreUs": 4298.492130577504,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "4ee5ad3522a84b5f",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:11:35.553271+00:00",
+      "finishedAt": "2026-11-05T07:18:35.438532+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1484569531452096,
+      "ci95": [
+        1.1312300988480315,
+        1.1656838074423876
+      ],
+      "scoreUs": 3279.4437699083646,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "ecf07db533fe42e3",
+      "problem": "muse_bf16_proj",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:14:12.326305+00:00",
+      "finishedAt": "2026-11-05T07:16:15.657734+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1158130300060505,
+      "ci95": [
+        1.0990758345559597,
+        1.132550225456141
+      ],
+      "scoreUs": 4329.39916463765,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "1342300976314ba1",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:14:30.207054+00:00",
+      "finishedAt": "2026-11-05T07:20:10.707962+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.9125244996506285,
+      "ci95": [
+        1.883836632155869,
+        1.9412123671453878
+      ],
+      "scoreUs": 202561.5358500083,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "c60ad83d57dd41fc",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:14:39.805847+00:00",
+      "finishedAt": "2026-11-05T07:18:35.478036+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1254074395547946,
+      "ci95": [
+        1.1085263279614728,
+        1.1422885511481164
+      ],
+      "scoreUs": 20099.653871977665,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "907d0c18199e4a56",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:14:49.631549+00:00",
+      "finishedAt": "2026-11-05T07:21:14.662419+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.2764386337338411,
+      "ci95": [
+        1.2572920542278334,
+        1.2955852132398487
+      ],
+      "scoreUs": 10535.954995862525,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "e4575d8c59b747cd",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:17:35.502758+00:00",
+      "finishedAt": "2026-11-05T07:19:39.442983+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.0610332927372617,
+      "ci95": [
+        1.0451177933462028,
+        1.0769487921283205
+      ],
+      "scoreUs": 4552.920283526133,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "c0dcdbd14c324de4",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:19:01.055652+00:00",
+      "finishedAt": "2026-11-05T07:21:46.207077+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1245697521288271,
+      "ci95": [
+        1.1077012058468947,
+        1.1414382984107594
+      ],
+      "scoreUs": 20114.626022244895,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "675bd6fa7c994e28",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:19:12.811738+00:00",
+      "finishedAt": "2026-11-05T07:25:16.060646+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.145925932985155,
+      "ci95": [
+        1.1287370439903777,
+        1.163114821979932
+      ],
+      "scoreUs": 3286.687116146093,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "422af8de49cc4854",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:20:12.583624+00:00",
+      "finishedAt": "2026-11-05T07:22:01.775362+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1080402923799688,
+      "ci95": [
+        1.0914196879942692,
+        1.1246608967656682
+      ],
+      "scoreUs": 4359.769254982492,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "23b1cc7e2a6040af",
+      "problem": "muse_prefill_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:20:26.832268+00:00",
+      "finishedAt": "2026-11-05T07:25:49.316139+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.9191900674402353,
+      "ci95": [
+        1.8904022164286318,
+        1.9479779184518387
+      ],
+      "scoreUs": 201858.01634369078,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "febf3b56000f414f",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:22:08.336352+00:00",
+      "finishedAt": "2026-11-05T07:27:08.653319+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.2888050156692232,
+      "ci95": [
+        1.269472940434185,
+        1.3081370909042616
+      ],
+      "scoreUs": 10434.86007308619,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "d59f678764a04312",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:22:12.761507+00:00",
+      "finishedAt": "2026-11-05T07:25:49.336100+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1342941479499566,
+      "ci95": [
+        1.1172797357307074,
+        1.151308560169206
+      ],
+      "scoreUs": 19942.181700295587,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "cb3815b0cc0f42c9",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:23:36.121996+00:00",
+      "finishedAt": "2026-11-05T07:25:49.341237+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1277672580904239,
+      "ci95": [
+        1.1108507492190676,
+        1.1446837669617802
+      ],
+      "scoreUs": 4283.5079360077225,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "30cd889fceb04c84",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:25:58.943153+00:00",
+      "finishedAt": "2026-11-05T07:31:40.927050+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1480864376775932,
+      "ci95": [
+        1.1308651411124293,
+        1.165307734242757
+      ],
+      "scoreUs": 3280.502126319566,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "495cffd565714308",
+      "problem": "muse_bf16_proj",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:26:08.734226+00:00",
+      "finishedAt": "2026-11-05T07:28:26.231519+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.122191247154804,
+      "ci95": [
+        1.1053583784474819,
+        1.139024115862126
+      ],
+      "scoreUs": 4304.7920862401825,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "eec749bbf1424f08",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:26:17.236777+00:00",
+      "finishedAt": "2026-11-05T07:30:09.298604+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.144628215776116,
+      "ci95": [
+        1.1274587925394743,
+        1.1617976390127578
+      ],
+      "scoreUs": 19762.137337023698,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "e5060f72e5464658",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:26:51.983763+00:00",
+      "finishedAt": "2026-11-05T07:33:01.128442+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.9069191073528755,
+      "ci95": [
+        1.8783153207425825,
+        1.9355228939631683
+      ],
+      "scoreUs": 203156.9658651026,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "5ee9869dc1b94137",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:28:59.918584+00:00",
+      "finishedAt": "2026-11-05T07:34:06.485967+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 0.26599725935111224,
+      "ci95": [
+        0.2620073004608455,
+        0.2699872182413789
+      ],
+      "scoreUs": 50558.791593593785,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "84c15c3cb1bb4f73",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:29:19.959408+00:00",
+      "finishedAt": "2026-11-05T07:31:57.792133+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1272183388902761,
+      "ci95": [
+        1.1103100638069219,
+        1.1441266139736301
+      ],
+      "scoreUs": 4285.593867072662,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "748284b2dbbb487d",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:31:15.171406+00:00",
+      "finishedAt": "2026-11-05T07:34:22.880959+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.139703424622834,
+      "ci95": [
+        1.1226078732534914,
+        1.1567989759921764
+      ],
+      "scoreUs": 19847.531832665867,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "84c6ddd49423472c",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:32:40.484728+00:00",
+      "finishedAt": "2026-11-05T07:39:08.631170+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1491790658420225,
+      "ci95": [
+        1.131941379854392,
+        1.1664167518296527
+      ],
+      "scoreUs": 3277.3830571307617,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "e2b0a74acf294138",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:33:47.775131+00:00",
+      "finishedAt": "2026-11-05T07:36:29.491214+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1129872221591792,
+      "ci95": [
+        1.0962924138267915,
+        1.129682030491567
+      ],
+      "scoreUs": 4340.391249621282,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "66d8a7f252c3404f",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:34:50.984164+00:00",
+      "finishedAt": "2026-11-05T07:39:39.995019+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.3223998271554638,
+      "ci95": [
+        1.302563829748132,
+        1.3422358245627957
+      ],
+      "scoreUs": 10169.7684193806,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "a970a935b2c14b60",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:35:30.527678+00:00",
+      "finishedAt": "2026-11-05T07:38:36.401205+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.120790803394205,
+      "ci95": [
+        1.1039789413432919,
+        1.137602665445118
+      ],
+      "scoreUs": 20182.446118844517,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "b7cec1a95f1b44b2",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:35:38.825982+00:00",
+      "finishedAt": "2026-11-05T07:41:32.496003+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.902255077778799,
+      "ci95": [
+        1.873721251612117,
+        1.9307889039454809
+      ],
+      "scoreUs": 203655.07471919007,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "c9e908a969fc4e40",
+      "problem": "muse_bf16_proj",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:37:00.477021+00:00",
+      "finishedAt": "2026-11-05T07:39:08.669093+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.131876248733277,
+      "ci95": [
+        1.1148981050022777,
+        1.148854392464276
+      ],
+      "scoreUs": 4267.957743089247,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "3ca205a7d8e84a6d",
+      "problem": "muse_attention_decode",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:39:33.716266+00:00",
+      "finishedAt": "2026-11-05T07:45:49.622112+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1455018065900484,
+      "ci95": [
+        1.1283192794911976,
+        1.162684333688899
+      ],
+      "scoreUs": 3287.9040245354076,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "6b4a0ba00df541ae",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:39:55.792296+00:00",
+      "finishedAt": "2026-11-05T07:42:52.658683+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1203747077227022,
+      "ci95": [
+        1.1035690871068617,
+        1.1371803283385427
+      ],
+      "scoreUs": 4311.771737349542,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "6c138b21813a4697",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:39:56.103245+00:00",
+      "finishedAt": "2026-11-05T07:44:29.361592+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1549671495374219,
+      "ci95": [
+        1.1376426422943604,
+        1.172291656780483
+      ],
+      "scoreUs": 19585.23236705018,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "7cbc989dbf43455b",
+      "problem": "muse_moe_w4a16",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:40:06.974228+00:00",
+      "finishedAt": "2026-11-05T07:47:16.214063+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.340147019786917,
+      "ci95": [
+        1.3200448144901131,
+        1.3602492250837206
+      ],
+      "scoreUs": 10035.093016987277,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "cacb88137d8a4986",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:43:33.372387+00:00",
+      "finishedAt": "2026-11-05T07:45:49.673717+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.112777360043395,
+      "ci95": [
+        1.0960856996427442,
+        1.1294690204440458
+      ],
+      "scoreUs": 4341.2098173992445,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "6dab6815d6f14e5b",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:45:01.944171+00:00",
+      "finishedAt": "2026-11-05T07:48:08.521636+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.148741022191064,
+      "ci95": [
+        1.1315099068581982,
+        1.16597213752393
+      ],
+      "scoreUs": 19691.3834911675,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "31188b3e4b2d482b",
+      "problem": "muse_attention_decode",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:46:29.393955+00:00",
+      "finishedAt": "2026-11-05T07:52:51.761703+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1524727843278246,
+      "ci95": [
+        1.1351856925629071,
+        1.169759876092742
+      ],
+      "scoreUs": 3268.0164349361885,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "3a2b324392814916",
+      "problem": "muse_prefill_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:46:29.634619+00:00",
+      "finishedAt": "2026-11-05T07:53:07.614732+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.8915310002581642,
+      "ci95": [
+        1.8631580352542918,
+        1.9199039652620364
+      ],
+      "scoreUs": 204809.70174272876,
+      "baselineUs": 387403.9
+    },
+    {
+      "id": "9c6a4cb6794448ba",
+      "problem": "muse_moe_w4a16",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:47:45.625507+00:00",
+      "finishedAt": "2026-11-05T07:53:42.828324+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.3402887683867017,
+      "ci95": [
+        1.3201844368609013,
+        1.3603930999125022
+      ],
+      "scoreUs": 10034.031708098162,
+      "baselineUs": 13448.5
+    },
+    {
+      "id": "027f7d1e62ed4951",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:49:07.816895+00:00",
+      "finishedAt": "2026-11-05T07:52:37.620669+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.162747431986157,
+      "ci95": [
+        1.1453062205063647,
+        1.1801886434659492
+      ],
+      "scoreUs": 19454.181860768284,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "d192f26ec76c411b",
+      "problem": "muse_bf16_proj",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:49:28.849596+00:00",
+      "finishedAt": "2026-11-05T07:52:19.127387+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1134271329263403,
+      "ci95": [
+        1.0967257259324452,
+        1.1301285399202354
+      ],
+      "scoreUs": 4338.676377773871,
+      "baselineUs": 4830.8
+    },
+    {
+      "id": "9187326d522142a2",
+      "problem": "muse_decode_layer",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:53:12.616018+00:00",
+      "finishedAt": "2026-11-05T07:56:03.189076+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1855883514963717,
+      "ci95": [
+        1.167804526223926,
+        1.203372176768817
+      ],
+      "scoreUs": 19079.387859580558,
+      "baselineUs": 22620.3
+    },
+    {
+      "id": "b45e9263f36b4141",
+      "problem": "muse_attention_decode",
+      "mode": "run",
+      "submittedAt": "2026-11-05T07:53:18.278976+00:00",
+      "finishedAt": "2026-11-05T07:59:31.481026+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.151975903562266,
+      "ci95": [
+        1.1346962650088321,
+        1.1692555421157
+      ],
+      "scoreUs": 3269.426025625566,
+      "baselineUs": 3766.3
+    },
+    {
+      "id": "e6bcc1d8cd1a44a7",
+      "problem": "muse_decode_layer",
+      "mode": "check",
+      "submittedAt": "2026-11-05T07:59:04.883686+00:00",
+      "finishedAt": "2026-11-05T08:01:34.026646+00:00",
+      "status": "done",
+      "passed": true,
+      "speedup": 1.1643985977658828,
+      "ci95": [
+        1.1469326187993947,
+        1.181864576732371
+      ],
+      "scoreUs": 19426.59501943861,
+      "baselineUs": 22620.3
+    }
+  ]
+}
