@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/sitemap.xml

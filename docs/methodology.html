@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology · Hopper Field Notes</title>
+  <meta name="description" content="Hosted H200 benchmarking workflow, scored versus check runs, confidence intervals, source verification, campaign scope, and limitations.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102a33">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Methodology · Hopper Field Notes">
+  <meta property="og:description" content="Hosted H200 benchmarking workflow, scored versus check runs, confidence intervals, source verification, campaign scope, and limitations.">
+  <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html">
+  <meta property="og:site_name" content="Hopper Field Notes">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Methodology \u00b7 Hopper Field Notes","description":"Hosted H200 benchmarking workflow, scored versus check runs, confidence intervals, source verification, campaign scope, and limitations.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script defer src="assets/site.js"></script>
+</head>
+<body class="methodology-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead shell">
+      <a class="brand" href="index.html" aria-label="Hopper Field Notes home">
+        <span class="brand-mark" aria-hidden="true">HFN</span>
+        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="index.html">Field notes</a><a href="methodology.html" aria-current="page">Methodology</a><a href="experiments.html">Experiments</a></nav>
+      <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="closure-strip">
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+<header class="page-hero shell">
+  <p class="eyebrow">Measurement notes</p>
+  <h1>How the evidence was made.</h1>
+  <p>Local development used only CPU-side Linux tools. GPU execution, correctness checks, and timing happened through the challenge's hosted NVIDIA H200 workflow. The distinction shapes every claim on this site.</p>
+  <div class="page-meta"><span>Hardware: NVIDIA H200</span><span>Campaign: 79 attempts</span><span>Status: closed</span></div>
+</header>
+
+<section class="section shell" aria-labelledby="workflow-title">
+  <div class="section-heading"><p class="eyebrow">Hosted workflow</p><h2 id="workflow-title">Code moved to the GPU; raw infrastructure did not move into this publication.</h2></div>
+  <ol class="workflow">
+    <li><span>1</span><div><h3>Develop locally</h3><p>Kernel source and experiment hypotheses were prepared on Linux with <code>localGpuUsed: false</code>. No local timing is presented as H200 evidence.</p></div></li>
+    <li><span>2</span><div><h3>Run a hosted check</h3><p>Checks tested correctness and returned off-board timing evidence when available. They supported iteration but did not set leaderboard placement.</p></div></li>
+    <li><span>3</span><div><h3>Submit a scored run</h3><p>Scored runs produced the retained publication metrics: measured microseconds, scored baseline, speedup, and a 95% confidence interval.</p></div></li>
+    <li><span>4</span><div><h3>Freeze source and snapshot</h3><p>The retained file was hashed, associated with a passing check, and compared with a timestamped leaderboard snapshot after the track closed.</p></div></li>
+  </ol>
+</section>
+
+<section class="section paper-section" aria-labelledby="modes-title">
+  <div class="shell two-column-prose">
+    <div><p class="eyebrow">Check vs scored</p><h2 id="modes-title">Two modes answer different questions.</h2></div>
+    <div class="definition-stack">
+      <article><h3><span class="mode-dot check" aria-hidden="true"></span>Check</h3><p>Did this candidate pass the hosted evaluator, and what timing evidence was returned? The site reports the highest passing campaign check separately. It can differ from the check paired to the exact retained source.</p></article>
+      <article><h3><span class="mode-dot scored" aria-hidden="true"></span>Scored run</h3><p>What result was placed on the scored path? The five headline values—1.131876×, 1.151976×, 1.340289×, 1.185588×, 1.919190×—come from verified scored jobs, not cherry-picked checks.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section shell" aria-labelledby="uncertainty-title">
+  <div class="section-heading split-heading"><div><p class="eyebrow">Uncertainty</p><h2 id="uncertainty-title">A confidence interval is a range, not a trophy.</h2></div><p>Each 95% interval summarizes the evaluator's reported uncertainty around speedup. Narrower is more precise; overlap does not by itself prove a tie, and separation does not make the result portable to other shapes or hardware.</p></div>
+  <div class="principle-grid">
+    <article><strong>Use the interval</strong><p>Read the point estimate with both bounds. This site never replaces a missing interval with a guessed one.</p></article>
+    <article><strong>Keep modes separate</strong><p>A fast check is useful evidence, but only a scored run supports the displayed scored result and provisional rank.</p></article>
+    <article><strong>Keep the denominator visible</strong><p>Speedup compares the evaluator's scored baseline with measured kernel time for that problem and run.</p></article>
+  </div>
+</section>
+
+<section class="section ink-section" id="scope" aria-labelledby="scope-method-title">
+  <div class="shell">
+    <div class="section-heading split-heading light"><div><p class="eyebrow light">Run scope</p><h2 id="scope-method-title">The ledger is complete for the campaign—not the whole account.</h2></div><p>The bounded campaign began 5 Nov 2026, 06:26:06 UTC and closed 5 Nov 2026, 08:00:00 UTC. Account totals are disclosed to prevent accidental conflation.</p></div>
+    <div class="table-scroll light-table" role="region" aria-label="Campaign and account scope comparison" tabindex="0">
+      <table><thead><tr><th scope="col">Scope</th><th scope="col">Scored</th><th scope="col">Checks</th><th scope="col">Total</th><th scope="col">Published here</th></tr></thead>
+      <tbody><tr><th scope="row">Five-agent campaign</th><td>18</td><td>61</td><td>79</td><td>All attempts</td></tr>
+      <tr><th scope="row">5 Nov account total</th><td>20</td><td>72</td><td>92</td><td>Aggregate disclosure only</td></tr></tbody></table>
+    </div>
+  </div>
+</section>
+
+<section class="section shell" id="provenance" aria-labelledby="provenance-title">
+  <div class="section-heading"><p class="eyebrow">Source chain</p><h2 id="provenance-title">Every article resolves to code, a digest, and verification.</h2><p>The highest passing check and the paired check are intentionally separate fields: the first summarizes the campaign; the second ties verification to the exact retained source.</p></div>
+  <div class="table-scroll" role="region" aria-label="Kernel source verification matrix" tabindex="0">
+    <table class="source-table"><thead><tr><th scope="col">Kernel</th><th scope="col">Scored job</th><th scope="col">Paired check</th><th scope="col">Retained source SHA-256</th></tr></thead><tbody><tr>
+  <th scope="row"><a href="kernels/bf16-projections.html">BF16 projections</a></th>
+  <td><code>c9e908a969fc4e40</code></td>
+  <td><code>84c15c3cb1bb4f73</code></td>
+  <td><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_bf16_proj/submission.py"><code>af9c07caaa1227dfe0c6213071f342c2582e02c96440b287a1a8b03e869adfb5</code></a></td>
+</tr><tr>
+  <th scope="row"><a href="kernels/attention-decode.html">Attention decode</a></th>
+  <td><code>b45e9263f36b4141</code></td>
+  <td><code>31188b3e4b2d482b</code></td>
+  <td><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_attention_decode/submission.py"><code>ac3a509b872f775619e91084c71e08eea1cfc99aad7630790842b2334ce4ca19</code></a></td>
+</tr><tr>
+  <th scope="row"><a href="kernels/routed-experts.html">Routed experts</a></th>
+  <td><code>9c6a4cb6794448ba</code></td>
+  <td><code>7cbc989dbf43455b</code></td>
+  <td><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_moe_w4a16/submission.py"><code>157e907cd37e9060e04a6dfda88cc3bde9cb2af2b4a2824717cecbaf3031106d</code></a></td>
+</tr><tr>
+  <th scope="row"><a href="kernels/decoder-layer.html">Decoder layer</a></th>
+  <td><code>9187326d522142a2</code></td>
+  <td><code>027f7d1e62ed4951</code></td>
+  <td><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_decode_layer/submission.py"><code>34ae067a20a1c69dd52acfcb52d74e164499de9af7971e78f4e0717a71beddaa</code></a></td>
+</tr><tr>
+  <th scope="row"><a href="kernels/prefill-layer.html">Prefill layer</a></th>
+  <td><code>23b1cc7e2a6040af</code></td>
+  <td><code>1342300976314ba1</code></td>
+  <td><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_prefill_layer/submission.py"><code>f1807a75ec056b7f3874d4fce02331ca0043ac38a45af7710a8287a252421a92</code></a></td>
+</tr></tbody></table>
+  </div>
+  <aside class="attribution-note"><h3>Prefill attribution</h3><p>The retained prefill kernel reuses publicly released Apache-licensed winner work. Original credit and license obligations are preserved; this publication claims the campaign's adaptation, verification, and measurements—not authorship of the upstream source.</p><a class="text-link" href="kernels/prefill-layer.html#provenance">Read the kernel-specific record <span aria-hidden="true">→</span></a></aside>
+</section>
+
+<section class="section shell" aria-labelledby="limits-title">
+  <div class="section-heading"><p class="eyebrow">Limitations</p><h2 id="limits-title">What these numbers do not establish.</h2></div>
+  <ul class="limitations-list">
+    <li><strong>Hardware specificity.</strong> Measurements come from the hosted NVIDIA H200 path; they are not local benchmarks or guarantees for other accelerators.</li>
+    <li><strong>Workload specificity.</strong> A retained implementation can be excellent for judged shapes while leaving other shapes, batching regimes, or concurrency patterns unexplored.</li>
+    <li><strong>Runtime specificity.</strong> Compiler, driver, evaluator, and scheduling conditions are pinned to the hosted environment and may change outside the archived campaign.</li>
+    <li><strong>Leaderboard timing.</strong> Rank, placed count, and leader speedup are provisional values captured at <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time>.</li>
+    <li><strong>Campaign selection.</strong> The experiment table contains all 79 in-scope attempts, including failures, but not the 13 account runs outside the defined campaign.</li>
+  </ul>
+</section>
+
+<section class="section shell references-section" aria-labelledby="references-title">
+  <div><p class="eyebrow">Research links</p><h2 id="references-title">Sources used across the field notes.</h2></div>
+  <ul class="reference-list"><li><a href="https://openkernelchallenge.dev/problems/muse_bf16_proj">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/gemm/hopper_bf16_gemv.py">Pinned SGLang Hopper BF16 GEMV <span aria-hidden="true">↗</span></a></li><li><a href="https://docs.nvidia.com/cutlass/latest/media/docs/cpp/efficient_gemm.html">CUTLASS efficient GEMM guide <span aria-hidden="true">↗</span></a></li><li><a href="https://openkernelchallenge.dev/problems/muse_attention_decode">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://arxiv.org/abs/2407.08608">FlashAttention-3 <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/muse_spark_v12/fused_qk_norm.py">Pinned SGLang fused Q/K normalization <span aria-hidden="true">↗</span></a></li><li><a href="https://openkernelchallenge.dev/problems/muse_moe_w4a16">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/moe/moe_wna16_marlin.py">Pinned SGLang Marlin MoE wrapper <span aria-hidden="true">↗</span></a></li><li><a href="https://triton-lang.org/main/getting-started/tutorials/08-grouped-gemm.html">Triton grouped GEMM tutorial <span aria-hidden="true">↗</span></a></li><li><a href="https://openkernelchallenge.dev/problems/muse_decode_layer">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/muse_spark_v12/fused_norm_residual.py">Pinned SGLang fused normalization boundary <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/NVIDIA/cutlass/tree/main/examples/57_hopper_grouped_gemm">CUTLASS Hopper grouped GEMM examples <span aria-hidden="true">↗</span></a></li><li><a href="https://openkernelchallenge.dev/problems/muse_prefill_layer">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/kernels/muse_prefill_layer.py">Pinned keell0renz source <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/NOTICE">Pinned upstream NOTICE <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/ZhimaoL/sglang">ZhimaoL SGLang FMHA lineage <span aria-hidden="true">↗</span></a></li></ul>
+</section>
+</main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-label">Evidence</p><ul class="footer-links">
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+    </div>
+  </footer>
+</body>
+</html>

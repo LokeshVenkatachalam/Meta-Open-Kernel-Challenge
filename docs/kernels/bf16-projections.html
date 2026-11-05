@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BF16 projections · Hopper Field Notes</title>
+  <meta name="description" content="Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions. Retained scored result: 1.131876×, with source provenance, experiments, lessons, and limitations.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102a33">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BF16 projections · Hopper Field Notes">
+  <meta property="og:description" content="Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions. Retained scored result: 1.131876×, with source provenance, experiments, lessons, and limitations.">
+  <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/bf16-projections.html">
+  <meta property="og:site_name" content="Hopper Field Notes">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/bf16-projections.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"BF16 projections \u00b7 Hopper Field Notes","description":"Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions. Retained scored result: 1.131876\u00d7, with source provenance, experiments, lessons, and limitations.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/bf16-projections.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script defer src="../assets/site.js"></script>
+</head>
+<body class="kernel-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead shell">
+      <a class="brand" href="../index.html" aria-label="Hopper Field Notes home">
+        <span class="brand-mark" aria-hidden="true">HFN</span>
+        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="../index.html" aria-current="page">Field notes</a><a href="../methodology.html">Methodology</a><a href="../experiments.html">Experiments</a></nav>
+      <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="closure-strip">
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+<nav class="breadcrumbs shell" aria-label="Breadcrumb"><ol><li><a href="../index.html">Field notes</a></li><li><span aria-current="page">BF16 projections</span></li></ol></nav>
+<article class="kernel-article">
+  <header class="kernel-hero shell">
+    <div class="kernel-heading">
+      <p class="eyebrow">Kernel note 01 · muse_bf16_proj</p>
+      <h1>BF16 projections</h1>
+      <p class="article-deck">Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions.</p>
+      <div class="article-actions"><a class="button dark" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_bf16_proj/submission.py">View retained source <span aria-hidden="true">↗</span></a><a class="button outline" href="../experiments.html?problem=muse_bf16_proj">Filter its attempts</a></div>
+    </div>
+    <aside class="result-ticket" aria-label="Retained result summary">
+      <p class="ticket-label">Best scored result</p>
+      <strong class="ticket-speedup">1.131876×</strong>
+      <p>4267.958 µs vs 4830.8 µs baseline</p>
+      <dl><div><dt>95% CI</dt><dd>1.114898–1.148854×</dd></div><div><dt>Rank</dt><dd>#1510 / 1746</dd></div><div><dt>Leader</dt><dd>1.727700×</dd></div><div><dt>Gap</dt><dd>0.595824×</dd></div></dl>
+      <p class="ticket-foot">Provisional at <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28 UTC</time></p>
+    </aside>
+  </header>
+
+  <div class="article-layout shell">
+    <aside class="article-rail" aria-label="Article summary">
+      <p class="rail-title">In this note</p>
+      <nav aria-label="Article sections"><a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#lessons">Lessons</a><a href="#failures">Failed ideas</a><a href="#caveats">Caveats</a><a href="#provenance">Provenance</a></nav>
+      <dl class="rail-counts"><div><dt>Campaign runs</dt><dd>21</dd></div><div><dt>Scored</dt><dd>4</dd></div><div><dt>Checks</dt><dd>17</dd></div></dl>
+    </aside>
+    <div class="article-body">
+      <section id="problem"><p class="section-number">01 · Problem</p><h2>What this kernel asked for.</h2><p>This workload mixes low-M BF16 GEMMs with a router path whose FP32 weights are represented as BF16 high and low parts. The retained scored source beat SGLang by 1.131876248733277x on the hosted H200 judge.</p><p>The campaign improved from a first scored result near 1.1081x, but remained below the provisional 1.7277x leader.</p></section>
+      <section id="approach"><p class="section-number">02 · Retained approach</p><h2>What survived the campaign.</h2><p>Dispatch uses a pinned Hopper BF16 GEMV path for selected M=1 projections, custom split-K kernels for profitable pooler and sliced-unpooler shapes, and the official SGLang dispatch elsewhere.</p><p>The router preserves BF16 high-plus-low weight semantics, accumulates in FP32, uses full-M tiles, and stores partials split-major for contiguous reduction traffic.</p></section>
+      <aside class="measurement-callout" aria-label="Measurement summary"><p class="eyebrow">Scored evidence</p><div><strong>1.131876×</strong><span>retained</span><strong>1.114898–1.148854×</strong><span>95% CI</span><strong>2.15%</strong><span>change from first campaign score</span></div><p>Best passing check: 1.127767× (1.110851–1.144684×). Check evidence remains off-board.</p></aside>
+      <section id="lessons"><p class="section-number">03 · Measured lessons</p><h2>What the numbers taught us.</h2><p>Changing router partials from output-major to split-major removed a measured strided-reduction penalty.</p><p>The profitable custom cutovers were narrow: pooler through M=8 and the sliced N=1024 unpooler.</p><p>The highest campaign check used a different candidate than the retained scored source, so best check and paired source check are reported separately.</p></section>
+      <section id="failures"><p class="section-number">04 · Experiments that did not survive</p><h2>Regression is part of the record.</h2><p>A direct scalar Triton reduction reached only 0.4877x, and a low-split BF16 attempt reached 0.8161x.</p><p>Replacing the workspace reduction with FP32 atomics passed correctness but regressed to 1.1134x because contention hurt larger router shapes.</p></section>
+      <section id="caveats"><p class="section-number">05 · Boundaries</p><h2>Where this result stops.</h2><p>The retained dispatch is shape-specific and was measured only through the official challenge shape set on a hosted NVIDIA H200.</p><p>Rank 1510 of 1746 is a provisional public snapshot, not a final award or leaderboard win.</p></section>
+      <section id="provenance"><p class="section-number">06 · Source and provenance</p><h2>Exact bytes, explicit credit.</h2>
+        <dl class="provenance-list"><div><dt>Retained file</dt><dd><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_bf16_proj/submission.py"><code>kernels/muse_bf16_proj/submission.py</code></a></dd></div><div><dt>SHA-256</dt><dd><code>af9c07caaa1227dfe0c6213071f342c2582e02c96440b287a1a8b03e869adfb5</code></dd></div><div><dt>Scored job</dt><dd><code>c9e908a969fc4e40</code></dd></div><div><dt>Highest passing check</dt><dd><code>cb3815b0cc0f42c9</code></dd></div><div><dt>Check paired to source</dt><dd><code>84c15c3cb1bb4f73</code></dd></div><div><dt>License record</dt><dd>Apache-2.0 with retained attribution for incorporated public kernel work</dd></div></dl>
+        <p>The highest passing campaign check can differ from the paired check for the retained source. Both are published so performance exploration is not confused with byte-for-byte verification.</p>
+        <a class="text-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Open full provenance <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="article-references" aria-labelledby="article-references-title"><p class="section-number">Research links</p><h2 id="article-references-title">References and upstream material.</h2><ul class="reference-list"><li><a href="https://openkernelchallenge.dev/problems/muse_bf16_proj">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/gemm/hopper_bf16_gemv.py">Pinned SGLang Hopper BF16 GEMV <span aria-hidden="true">↗</span></a></li><li><a href="https://docs.nvidia.com/cutlass/latest/media/docs/cpp/efficient_gemm.html">CUTLASS efficient GEMM guide <span aria-hidden="true">↗</span></a></li></ul></section>
+    </div>
+  </div>
+</article>
+<nav class="article-pagination shell" aria-label="Kernel article pagination"><span aria-hidden="true"></span><a rel="next" href="attention-decode.html"><span>Next note</span><strong>Attention decode →</strong></a></nav>
+</main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-label">Evidence</p><ul class="footer-links">
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+    </div>
+  </footer>
+</body>
+</html>

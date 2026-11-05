@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Routed experts · Hopper Field Notes</title>
+  <meta name="description" content="Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation. Retained scored result: 1.340289×, with source provenance, experiments, lessons, and limitations.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102a33">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Routed experts · Hopper Field Notes">
+  <meta property="og:description" content="Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation. Retained scored result: 1.340289×, with source provenance, experiments, lessons, and limitations.">
+  <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/routed-experts.html">
+  <meta property="og:site_name" content="Hopper Field Notes">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/routed-experts.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Routed experts \u00b7 Hopper Field Notes","description":"Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation. Retained scored result: 1.340289\u00d7, with source provenance, experiments, lessons, and limitations.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/routed-experts.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script defer src="../assets/site.js"></script>
+</head>
+<body class="kernel-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead shell">
+      <a class="brand" href="../index.html" aria-label="Hopper Field Notes home">
+        <span class="brand-mark" aria-hidden="true">HFN</span>
+        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="../index.html" aria-current="page">Field notes</a><a href="../methodology.html">Methodology</a><a href="../experiments.html">Experiments</a></nav>
+      <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="closure-strip">
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+<nav class="breadcrumbs shell" aria-label="Breadcrumb"><ol><li><a href="../index.html">Field notes</a></li><li><span aria-current="page">Routed experts</span></li></ol></nav>
+<article class="kernel-article">
+  <header class="kernel-hero shell">
+    <div class="kernel-heading">
+      <p class="eyebrow">Kernel note 03 · muse_moe_w4a16</p>
+      <h1>Routed experts</h1>
+      <p class="article-deck">Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation.</p>
+      <div class="article-actions"><a class="button dark" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_moe_w4a16/submission.py">View retained source <span aria-hidden="true">↗</span></a><a class="button outline" href="../experiments.html?problem=muse_moe_w4a16">Filter its attempts</a></div>
+    </div>
+    <aside class="result-ticket" aria-label="Retained result summary">
+      <p class="ticket-label">Best scored result</p>
+      <strong class="ticket-speedup">1.340289×</strong>
+      <p>10034.032 µs vs 13448.5 µs baseline</p>
+      <dl><div><dt>95% CI</dt><dd>1.320184–1.360393×</dd></div><div><dt>Rank</dt><dd>#1131 / 1425</dd></div><div><dt>Leader</dt><dd>2.843800×</dd></div><div><dt>Gap</dt><dd>1.503511×</dd></div></dl>
+      <p class="ticket-foot">Provisional at <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28 UTC</time></p>
+    </aside>
+  </header>
+
+  <div class="article-layout shell">
+    <aside class="article-rail" aria-label="Article summary">
+      <p class="rail-title">In this note</p>
+      <nav aria-label="Article sections"><a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#lessons">Lessons</a><a href="#failures">Failed ideas</a><a href="#caveats">Caveats</a><a href="#provenance">Provenance</a></nav>
+      <dl class="rail-counts"><div><dt>Campaign runs</dt><dd>16</dd></div><div><dt>Scored</dt><dd>2</dd></div><div><dt>Checks</dt><dd>14</dd></div></dl>
+    </aside>
+    <div class="article-body">
+      <section id="problem"><p class="section-number">01 · Problem</p><h2>What this kernel asked for.</h2><p>The routed-expert problem combines top-8 routing over 256 global experts with NVFP4 weights and BF16 activations on an EP8 rank. The retained source beat SGLang by 1.3402887683867017x.</p><p>It placed 1131 of 1425 in the current provisional snapshot, behind a 2.8438x leader.</p></section>
+      <section id="approach"><p class="section-number">02 · Retained approach</p><h2>What survived the campaign.</h2><p>The kernel retains the lossless SGLang Marlin repack and chooses block 8 through 16 tokens, then block 16 for larger batches.</p><p>A Triton program maps global expert IDs to the local 0-31 range. A fused finalizer performs per-expert RMS normalization, route weighting, and FP32 accumulation.</p></section>
+      <aside class="measurement-callout" aria-label="Measurement summary"><p class="eyebrow">Scored evidence</p><div><strong>1.340289×</strong><span>retained</span><strong>1.320184–1.360393×</strong><span>95% CI</span><strong>14.82%</strong><span>change from first campaign score</span></div><p>Best passing check: 1.340147× (1.320045–1.360249×). Check evidence remains off-board.</p></aside>
+      <section id="lessons"><p class="section-number">03 · Measured lessons</p><h2>What the numbers taught us.</h2><p>Routing, alignment, and finalization changes moved the aggregate from a first scored 1.1673x result to 1.3403x.</p><p>After those changes, the two Marlin GEMMs still consumed roughly 94-95% of large-shape GPU time.</p><p>Every official scored shape in the retained check exceeded the SGLang baseline.</p></section>
+      <section id="failures"><p class="section-number">04 · Experiments that did not survive</p><h2>Regression is part of the record.</h2><p>A persistent Triton SIMT GEMV that decoded canonical NVFP4 directly passed correctness but collapsed to 0.2660x.</p><p>Fixed block 32, route materialization, and split W13/W2 block policies regressed part of the shape mix and were rejected.</p></section>
+      <section id="caveats"><p class="section-number">05 · Boundaries</p><h2>Where this result stops.</h2><p>Preparation assumes EP8 with local experts 0-31, and the verified timing range ends at 256 routed tokens.</p><p>H200 does not provide Blackwell native NVFP4 tensor-core MMA; the implementation dequantizes for supported Hopper compute.</p></section>
+      <section id="provenance"><p class="section-number">06 · Source and provenance</p><h2>Exact bytes, explicit credit.</h2>
+        <dl class="provenance-list"><div><dt>Retained file</dt><dd><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_moe_w4a16/submission.py"><code>kernels/muse_moe_w4a16/submission.py</code></a></dd></div><div><dt>SHA-256</dt><dd><code>157e907cd37e9060e04a6dfda88cc3bde9cb2af2b4a2824717cecbaf3031106d</code></dd></div><div><dt>Scored job</dt><dd><code>9c6a4cb6794448ba</code></dd></div><div><dt>Highest passing check</dt><dd><code>7cbc989dbf43455b</code></dd></div><div><dt>Check paired to source</dt><dd><code>7cbc989dbf43455b</code></dd></div><div><dt>License record</dt><dd>Apache-2.0 with retained attribution for incorporated public kernel work</dd></div></dl>
+        <p>The highest passing campaign check can differ from the paired check for the retained source. Both are published so performance exploration is not confused with byte-for-byte verification.</p>
+        <a class="text-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Open full provenance <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="article-references" aria-labelledby="article-references-title"><p class="section-number">Research links</p><h2 id="article-references-title">References and upstream material.</h2><ul class="reference-list"><li><a href="https://openkernelchallenge.dev/problems/muse_moe_w4a16">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/moe/moe_wna16_marlin.py">Pinned SGLang Marlin MoE wrapper <span aria-hidden="true">↗</span></a></li><li><a href="https://triton-lang.org/main/getting-started/tutorials/08-grouped-gemm.html">Triton grouped GEMM tutorial <span aria-hidden="true">↗</span></a></li></ul></section>
+    </div>
+  </div>
+</article>
+<nav class="article-pagination shell" aria-label="Kernel article pagination"><a rel="prev" href="attention-decode.html"><span>Previous note</span><strong>← Attention decode</strong></a><a rel="next" href="decoder-layer.html"><span>Next note</span><strong>Decoder layer →</strong></a></nav>
+</main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-label">Evidence</p><ul class="footer-links">
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+    </div>
+  </footer>
+</body>
+</html>

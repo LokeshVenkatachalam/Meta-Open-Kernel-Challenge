@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attention decode · Hopper Field Notes</title>
+  <meta name="description" content="Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention. Retained scored result: 1.151976×, with source provenance, experiments, lessons, and limitations.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102a33">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Attention decode · Hopper Field Notes">
+  <meta property="og:description" content="Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention. Retained scored result: 1.151976×, with source provenance, experiments, lessons, and limitations.">
+  <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/attention-decode.html">
+  <meta property="og:site_name" content="Hopper Field Notes">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/attention-decode.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Attention decode \u00b7 Hopper Field Notes","description":"Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention. Retained scored result: 1.151976\u00d7, with source provenance, experiments, lessons, and limitations.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/attention-decode.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script defer src="../assets/site.js"></script>
+</head>
+<body class="kernel-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead shell">
+      <a class="brand" href="../index.html" aria-label="Hopper Field Notes home">
+        <span class="brand-mark" aria-hidden="true">HFN</span>
+        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="../index.html" aria-current="page">Field notes</a><a href="../methodology.html">Methodology</a><a href="../experiments.html">Experiments</a></nav>
+      <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="closure-strip">
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+<nav class="breadcrumbs shell" aria-label="Breadcrumb"><ol><li><a href="../index.html">Field notes</a></li><li><span aria-current="page">Attention decode</span></li></ol></nav>
+<article class="kernel-article">
+  <header class="kernel-hero shell">
+    <div class="kernel-heading">
+      <p class="eyebrow">Kernel note 02 · muse_attention_decode</p>
+      <h1>Attention decode</h1>
+      <p class="article-deck">Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention.</p>
+      <div class="article-actions"><a class="button dark" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_attention_decode/submission.py">View retained source <span aria-hidden="true">↗</span></a><a class="button outline" href="../experiments.html?problem=muse_attention_decode">Filter its attempts</a></div>
+    </div>
+    <aside class="result-ticket" aria-label="Retained result summary">
+      <p class="ticket-label">Best scored result</p>
+      <strong class="ticket-speedup">1.151976×</strong>
+      <p>3269.426 µs vs 3766.3 µs baseline</p>
+      <dl><div><dt>95% CI</dt><dd>1.134696–1.169256×</dd></div><div><dt>Rank</dt><dd>#1278 / 1379</dd></div><div><dt>Leader</dt><dd>3.338900×</dd></div><div><dt>Gap</dt><dd>2.186924×</dd></div></dl>
+      <p class="ticket-foot">Provisional at <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28 UTC</time></p>
+    </aside>
+  </header>
+
+  <div class="article-layout shell">
+    <aside class="article-rail" aria-label="Article summary">
+      <p class="rail-title">In this note</p>
+      <nav aria-label="Article sections"><a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#lessons">Lessons</a><a href="#failures">Failed ideas</a><a href="#caveats">Caveats</a><a href="#provenance">Provenance</a></nav>
+      <dl class="rail-counts"><div><dt>Campaign runs</dt><dd>12</dd></div><div><dt>Scored</dt><dd>3</dd></div><div><dt>Checks</dt><dd>9</dd></div></dl>
+    </aside>
+    <div class="article-body">
+      <section id="problem"><p class="section-number">01 · Problem</p><h2>What this kernel asked for.</h2><p>Attention decode has a small preparation boundary around a much larger paged attention reduction. The retained source beat SGLang by 1.151975903562266x while preserving dense visibility, scaled-cache, and live-slot semantics.</p><p>The final public snapshot placed the result 1278 of 1379, behind a provisional 3.3389x leader.</p></section>
+      <section id="approach"><p class="section-number">02 · Retained approach</p><h2>What survived the campaign.</h2><p>One Triton preparation kernel fuses Q/K RMS normalization, optional interleaved RoPE, FP8 query conversion, and scaled K/V cache insertion.</p><p>The retained path uses fixed uniform-query shapes where valid and reuses compatible scheduler metadata so FlashAttention-3 avoids an extra prepare step.</p></section>
+      <aside class="measurement-callout" aria-label="Measurement summary"><p class="eyebrow">Scored evidence</p><div><strong>1.151976×</strong><span>retained</span><strong>1.134696–1.169256×</strong><span>95% CI</span><strong>2.01%</strong><span>change from first campaign score</span></div><p>Best passing check: 1.152473× (1.135186–1.169760×). Check evidence remains off-board.</p></aside>
+      <section id="lessons"><p class="section-number">03 · Measured lessons</p><h2>What the numbers taught us.</h2><p>Removing launch and metadata overhead helped verify and sliding-window shapes, while full B16/B32 attention remained dominated by the FlashAttention-3 main kernel.</p><p>The fixed-query metadata variant produced the strongest check at 1.1525x and the retained score at 1.1520x.</p><p>Several small point-estimate changes had overlapping confidence intervals and were not treated as proven improvements.</p></section>
+      <section id="failures"><p class="section-number">04 · Experiments that did not survive</p><h2>Regression is part of the record.</h2><p>The first fused preparation failed compilation because Triton constants were not constexpr, so it has null performance fields in the public ledger.</p><p>A correct custom split-KV Triton gather reached only 0.3974x; random page-1 gathers and small matrix tiles did not replace the Hopper-native attention kernel effectively.</p></section>
+      <section id="caveats"><p class="section-number">05 · Boundaries</p><h2>Where this result stops.</h2><p>The fixed-query choice depends on the challenge&#x27;s uniform query lengths and exact cache contract.</p><p>The ranking is provisional, and this result did not approach or surpass the public leader.</p></section>
+      <section id="provenance"><p class="section-number">06 · Source and provenance</p><h2>Exact bytes, explicit credit.</h2>
+        <dl class="provenance-list"><div><dt>Retained file</dt><dd><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_attention_decode/submission.py"><code>kernels/muse_attention_decode/submission.py</code></a></dd></div><div><dt>SHA-256</dt><dd><code>ac3a509b872f775619e91084c71e08eea1cfc99aad7630790842b2334ce4ca19</code></dd></div><div><dt>Scored job</dt><dd><code>b45e9263f36b4141</code></dd></div><div><dt>Highest passing check</dt><dd><code>31188b3e4b2d482b</code></dd></div><div><dt>Check paired to source</dt><dd><code>31188b3e4b2d482b</code></dd></div><div><dt>License record</dt><dd>Apache-2.0 with retained attribution for incorporated public kernel work</dd></div></dl>
+        <p>The highest passing campaign check can differ from the paired check for the retained source. Both are published so performance exploration is not confused with byte-for-byte verification.</p>
+        <a class="text-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Open full provenance <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="article-references" aria-labelledby="article-references-title"><p class="section-number">Research links</p><h2 id="article-references-title">References and upstream material.</h2><ul class="reference-list"><li><a href="https://openkernelchallenge.dev/problems/muse_attention_decode">Open Kernel Challenge problem <span aria-hidden="true">↗</span></a></li><li><a href="https://arxiv.org/abs/2407.08608">FlashAttention-3 <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/sgl-project/sglang/blob/a55ab7d5ae1bba59ac351e55026fe7f7644ecc5f/python/sglang/kernels/ops/muse_spark_v12/fused_qk_norm.py">Pinned SGLang fused Q/K normalization <span aria-hidden="true">↗</span></a></li></ul></section>
+    </div>
+  </div>
+</article>
+<nav class="article-pagination shell" aria-label="Kernel article pagination"><a rel="prev" href="bf16-projections.html"><span>Previous note</span><strong>← BF16 projections</strong></a><a rel="next" href="routed-experts.html"><span>Next note</span><strong>Routed experts →</strong></a></nav>
+</main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-label">Evidence</p><ul class="footer-links">
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+    </div>
+  </footer>
+</body>
+</html>

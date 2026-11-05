@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hopper Field Notes</title>
+  <meta name="description" content="Five Open Kernel Challenge implementations developed CPU-only on Linux and benchmarked remotely on NVIDIA H200, with complete results and experiment history.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102a33">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hopper Field Notes">
+  <meta property="og:description" content="Five Open Kernel Challenge implementations developed CPU-only on Linux and benchmarked remotely on NVIDIA H200, with complete results and experiment history.">
+  <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html">
+  <meta property="og:site_name" content="Hopper Field Notes">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Hopper Field Notes","description":"Five Open Kernel Challenge implementations developed CPU-only on Linux and benchmarked remotely on NVIDIA H200, with complete results and experiment history.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script defer src="assets/site.js"></script>
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead shell">
+      <a class="brand" href="index.html" aria-label="Hopper Field Notes home">
+        <span class="brand-mark" aria-hidden="true">HFN</span>
+        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Field notes</a><a href="methodology.html">Methodology</a><a href="experiments.html">Experiments</a></nav>
+      <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="closure-strip">
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+<section class="hero shell" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow light">Muse Spark Open Kernel Challenge · Published research log</p>
+    <h1 id="hero-title">Optimizing in the dark.<br><em>Measuring in the light.</em></h1>
+    <p class="hero-lede">Five GPU kernels prepared and tuned with CPU-only Linux tooling, then benchmarked remotely on an NVIDIA H200. This is the complete field record: retained source, confidence intervals, provisional gaps, failed ideas, and all 79 campaign attempts.</p>
+    <div class="hero-actions"><a class="button primary" href="#results">Read the results</a><a class="button ghost" href="experiments.html">Inspect all attempts</a></div>
+    <p class="hero-disclosure"><strong>Outcome:</strong> every retained kernel beat its scored baseline; none won its leaderboard. Rankings remain provisional at the 5 Nov 2026, 20:28:37 UTC snapshot.</p>
+  </div>
+  <aside class="hero-panel" aria-label="Campaign at a glance">
+    <p class="panel-kicker">Field window</p>
+    <p class="window-time">1h 33m 53s</p>
+    <p>5 Nov 2026, 06:26 UTC<br>to 5 Nov 2026, 08:00 UTC</p>
+    <div class="hero-stat-grid">
+      <div><strong>5</strong><span>kernels</span></div>
+      <div><strong>79</strong><span>campaign runs</span></div>
+      <div><strong>18</strong><span>scored</span></div>
+      <div><strong>61</strong><span>checks</span></div>
+    </div>
+    <p class="panel-foot"><span class="signal-dot" aria-hidden="true"></span> Challenge track closed 5 Nov, 08:00 UTC</p>
+  </aside>
+</section>
+
+<section class="context-band" aria-label="Development context">
+  <div class="shell context-grid">
+    <div><span class="context-number">01</span><p><strong>Local work:</strong> Linux, CPU-only. No local GPU was used.</p></div>
+    <div><span class="context-number">02</span><p><strong>Measurement:</strong> hosted checks and scored runs on NVIDIA H200.</p></div>
+    <div><span class="context-number">03</span><p><strong>Publication:</strong> exact retained sources, hashes, run ledger, and provenance.</p></div>
+  </div>
+</section>
+
+<section class="section shell" id="results" aria-labelledby="results-title">
+  <div class="section-heading split-heading">
+    <div><p class="eyebrow">The result board</p><h2 id="results-title">Five baseline wins, five honest gaps.</h2></div>
+    <p>Speedup is baseline time divided by measured time. The bars compare each retained scored result with the raw provisional leader at one timestamp; they are not claims of final placement.</p>
+  </div>
+  <div class="results-grid">
+<article class="result-card">
+  <div class="card-topline"><span class="kernel-index">muse_bf16_proj</span><span class="status-badge success">Baseline beaten</span></div>
+  <h3><a href="kernels/bf16-projections.html">BF16 projections</a></h3>
+  <p>Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions.</p>
+  <div class="headline-metric"><strong>1.131876×</strong><span>best scored speedup</span></div>
+  <dl class="metric-pairs">
+    <div><dt>Measured</dt><dd>4267.958 µs</dd></div>
+    <div><dt>Baseline</dt><dd>4830.8 µs</dd></div>
+    <div><dt>95% CI</dt><dd>1.114898–1.148854×</dd></div>
+    <div><dt>Provisional rank</dt><dd>#1510 of 1746</dd></div>
+  </dl>
+  <div class="comparison" role="img" aria-label="Retained speedup 1.131876×; provisional leader 1.727700×">
+    <div class="comparison-row"><span>Leader</span><span class="bar-track"><span class="bar-fill leader" style="width:100%"></span></span><strong>1.727700×</strong></div>
+    <div class="comparison-row"><span>Ours</span><span class="bar-track"><span class="bar-fill ours" style="width:65.513%"></span></span><strong>1.131876×</strong></div>
+  </div>
+  <p class="card-note">11.65% lower measured time than baseline. Gap to the provisional leader: 0.595824×.</p>
+  <div class="card-actions"><a class="text-link" href="kernels/bf16-projections.html">Read the field note <span aria-hidden="true">→</span></a><a class="text-link quiet" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_bf16_proj/submission.py">View source <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="result-card">
+  <div class="card-topline"><span class="kernel-index">muse_attention_decode</span><span class="status-badge success">Baseline beaten</span></div>
+  <h3><a href="kernels/attention-decode.html">Attention decode</a></h3>
+  <p>Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention.</p>
+  <div class="headline-metric"><strong>1.151976×</strong><span>best scored speedup</span></div>
+  <dl class="metric-pairs">
+    <div><dt>Measured</dt><dd>3269.426 µs</dd></div>
+    <div><dt>Baseline</dt><dd>3766.3 µs</dd></div>
+    <div><dt>95% CI</dt><dd>1.134696–1.169256×</dd></div>
+    <div><dt>Provisional rank</dt><dd>#1278 of 1379</dd></div>
+  </dl>
+  <div class="comparison" role="img" aria-label="Retained speedup 1.151976×; provisional leader 3.338900×">
+    <div class="comparison-row"><span>Leader</span><span class="bar-track"><span class="bar-fill leader" style="width:100%"></span></span><strong>3.338900×</strong></div>
+    <div class="comparison-row"><span>Ours</span><span class="bar-track"><span class="bar-fill ours" style="width:34.502%"></span></span><strong>1.151976×</strong></div>
+  </div>
+  <p class="card-note">13.19% lower measured time than baseline. Gap to the provisional leader: 2.186924×.</p>
+  <div class="card-actions"><a class="text-link" href="kernels/attention-decode.html">Read the field note <span aria-hidden="true">→</span></a><a class="text-link quiet" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_attention_decode/submission.py">View source <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="result-card">
+  <div class="card-topline"><span class="kernel-index">muse_moe_w4a16</span><span class="status-badge success">Baseline beaten</span></div>
+  <h3><a href="kernels/routed-experts.html">Routed experts</a></h3>
+  <p>Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation.</p>
+  <div class="headline-metric"><strong>1.340289×</strong><span>best scored speedup</span></div>
+  <dl class="metric-pairs">
+    <div><dt>Measured</dt><dd>10034.032 µs</dd></div>
+    <div><dt>Baseline</dt><dd>13448.5 µs</dd></div>
+    <div><dt>95% CI</dt><dd>1.320184–1.360393×</dd></div>
+    <div><dt>Provisional rank</dt><dd>#1131 of 1425</dd></div>
+  </dl>
+  <div class="comparison" role="img" aria-label="Retained speedup 1.340289×; provisional leader 2.843800×">
+    <div class="comparison-row"><span>Leader</span><span class="bar-track"><span class="bar-fill leader" style="width:100%"></span></span><strong>2.843800×</strong></div>
+    <div class="comparison-row"><span>Ours</span><span class="bar-track"><span class="bar-fill ours" style="width:47.130%"></span></span><strong>1.340289×</strong></div>
+  </div>
+  <p class="card-note">25.39% lower measured time than baseline. Gap to the provisional leader: 1.503511×.</p>
+  <div class="card-actions"><a class="text-link" href="kernels/routed-experts.html">Read the field note <span aria-hidden="true">→</span></a><a class="text-link quiet" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_moe_w4a16/submission.py">View source <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="result-card">
+  <div class="card-topline"><span class="kernel-index">muse_decode_layer</span><span class="status-badge success">Baseline beaten</span></div>
+  <h3><a href="kernels/decoder-layer.html">Decoder layer</a></h3>
+  <p>Whole-layer fusion around attention preparation, expert routing, tuned Marlin blocks, and normalization boundaries.</p>
+  <div class="headline-metric"><strong>1.185588×</strong><span>best scored speedup</span></div>
+  <dl class="metric-pairs">
+    <div><dt>Measured</dt><dd>19079.388 µs</dd></div>
+    <div><dt>Baseline</dt><dd>22620.3 µs</dd></div>
+    <div><dt>95% CI</dt><dd>1.167805–1.203372×</dd></div>
+    <div><dt>Provisional rank</dt><dd>#1172 of 1299</dd></div>
+  </dl>
+  <div class="comparison" role="img" aria-label="Retained speedup 1.185588×; provisional leader 2.614400×">
+    <div class="comparison-row"><span>Leader</span><span class="bar-track"><span class="bar-fill leader" style="width:100%"></span></span><strong>2.614400×</strong></div>
+    <div class="comparison-row"><span>Ours</span><span class="bar-track"><span class="bar-fill ours" style="width:45.348%"></span></span><strong>1.185588×</strong></div>
+  </div>
+  <p class="card-note">15.65% lower measured time than baseline. Gap to the provisional leader: 1.428812×.</p>
+  <div class="card-actions"><a class="text-link" href="kernels/decoder-layer.html">Read the field note <span aria-hidden="true">→</span></a><a class="text-link quiet" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_decode_layer/submission.py">View source <span aria-hidden="true">↗</span></a></div>
+</article>
+<article class="result-card">
+  <div class="card-topline"><span class="kernel-index">muse_prefill_layer</span><span class="status-badge success">Baseline beaten</span></div>
+  <h3><a href="kernels/prefill-layer.html">Prefill layer</a></h3>
+  <p>Attributed public Hopper FMHA and persistent grouped W4A16 layer integration retained under its upstream licenses and notices.</p>
+  <div class="headline-metric"><strong>1.919190×</strong><span>best scored speedup</span></div>
+  <dl class="metric-pairs">
+    <div><dt>Measured</dt><dd>201858.016 µs</dd></div>
+    <div><dt>Baseline</dt><dd>387403.9 µs</dd></div>
+    <div><dt>95% CI</dt><dd>1.890402–1.947978×</dd></div>
+    <div><dt>Provisional rank</dt><dd>#107 of 898</dd></div>
+  </dl>
+  <div class="comparison" role="img" aria-label="Retained speedup 1.919190×; provisional leader 2.147100×">
+    <div class="comparison-row"><span>Leader</span><span class="bar-track"><span class="bar-fill leader" style="width:100%"></span></span><strong>2.147100×</strong></div>
+    <div class="comparison-row"><span>Ours</span><span class="bar-track"><span class="bar-fill ours" style="width:89.385%"></span></span><strong>1.919190×</strong></div>
+  </div>
+  <p class="card-note">47.89% lower measured time than baseline. Gap to the provisional leader: 0.227910×.</p>
+  <div class="card-actions"><a class="text-link" href="kernels/prefill-layer.html">Read the field note <span aria-hidden="true">→</span></a><a class="text-link quiet" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/kernels/muse_prefill_layer/submission.py">View source <span aria-hidden="true">↗</span></a></div>
+</article></div>
+</section>
+
+<section class="section ink-section" aria-labelledby="scope-title">
+  <div class="shell scope-layout">
+    <div>
+      <p class="eyebrow light">One campaign, two scopes</p>
+      <h2 id="scope-title">79 attempts tell this story.<br>92 runs belong to the account.</h2>
+      <p>The experiment ledger deliberately covers the five-agent optimization campaign only: 18 scored runs and 61 checks. Account totals for 5 November also include work outside that bounded campaign and must not be used as the campaign denominator.</p>
+      <a class="button ghost" href="methodology.html#scope">See the scope rules</a>
+    </div>
+    <div class="scope-comparison" aria-label="Campaign and account run totals">
+      <article><span>Published campaign</span><strong>79</strong><p>18 scored + 61 checks</p></article>
+      <article><span>Account total</span><strong>92</strong><p>20 scored + 72 checks</p></article>
+      <p class="scope-delta">13 account runs sit outside the five-agent campaign.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section shell" aria-labelledby="notebooks-title">
+  <div class="section-heading"><p class="eyebrow">Kernel notebooks</p><h2 id="notebooks-title">The useful part is what changed—and what did not work.</h2><p>Each article ties the retained measurement to its exact source, then separates approach, lessons, failures, and caveats.</p></div>
+  <div class="notebook-grid"><article class="notebook-card">
+  <p class="eyebrow">Kernel 01</p>
+  <h3><a href="kernels/bf16-projections.html">BF16 projections</a></h3>
+  <p>This workload mixes low-M BF16 GEMMs with a router path whose FP32 weights are represented as BF16 high and low parts. The retained scored source beat SGLang by 1.131876248733277x on the hosted H200 judge.</p>
+  <p class="lesson"><strong>Measured lesson.</strong> Changing router partials from output-major to split-major removed a measured strided-reduction penalty.</p>
+  <a class="text-link" href="kernels/bf16-projections.html">Open notebook <span aria-hidden="true">→</span></a>
+</article><article class="notebook-card">
+  <p class="eyebrow">Kernel 02</p>
+  <h3><a href="kernels/attention-decode.html">Attention decode</a></h3>
+  <p>Attention decode has a small preparation boundary around a much larger paged attention reduction. The retained source beat SGLang by 1.151975903562266x while preserving dense visibility, scaled-cache, and live-slot semantics.</p>
+  <p class="lesson"><strong>Measured lesson.</strong> Removing launch and metadata overhead helped verify and sliding-window shapes, while full B16/B32 attention remained dominated by the FlashAttention-3 main kernel.</p>
+  <a class="text-link" href="kernels/attention-decode.html">Open notebook <span aria-hidden="true">→</span></a>
+</article><article class="notebook-card">
+  <p class="eyebrow">Kernel 03</p>
+  <h3><a href="kernels/routed-experts.html">Routed experts</a></h3>
+  <p>The routed-expert problem combines top-8 routing over 256 global experts with NVFP4 weights and BF16 activations on an EP8 rank. The retained source beat SGLang by 1.3402887683867017x.</p>
+  <p class="lesson"><strong>Measured lesson.</strong> Routing, alignment, and finalization changes moved the aggregate from a first scored 1.1673x result to 1.3403x.</p>
+  <a class="text-link" href="kernels/routed-experts.html">Open notebook <span aria-hidden="true">→</span></a>
+</article><article class="notebook-card">
+  <p class="eyebrow">Kernel 04</p>
+  <h3><a href="kernels/decoder-layer.html">Decoder layer</a></h3>
+  <p>The whole decoder layer exposes interactions that primitive-only benchmarks miss: attention preparation, paged attention, dense projections, routed experts, and residual normalization share the measured score. The retained source beat SGLang by 1.1855883514963717x.</p>
+  <p class="lesson"><strong>Measured lesson.</strong> Isolated block-size changes raised the measured check from 1.0781x to 1.1343x before boundary fusion added the remaining gain.</p>
+  <a class="text-link" href="kernels/decoder-layer.html">Open notebook <span aria-hidden="true">→</span></a>
+</article><article class="notebook-card">
+  <p class="eyebrow">Kernel 05</p>
+  <h3><a href="kernels/prefill-layer.html">Prefill layer</a></h3>
+  <p>The retained prefill kernel is adapted/reused public work from team keell0renz and its vjeux, alygg77, and ZhimaoL lineages. It is not presented as an independently original kernel.</p>
+  <p class="lesson"><strong>Measured lesson.</strong> The public N72 FMHA and LT2 integration raised the campaign from a first scored 1.7859x result to 1.9192x.</p>
+  <a class="text-link" href="kernels/prefill-layer.html">Open notebook <span aria-hidden="true">→</span></a>
+</article></div>
+</section>
+
+<section class="section shell methodology-teaser" aria-labelledby="evidence-title">
+  <div class="evidence-mark" aria-hidden="true">CI</div>
+  <div><p class="eyebrow">How to read the evidence</p><h2 id="evidence-title">Checks guide iteration. Scored runs support the published result.</h2><p>A passing check can be faster than the retained scored run without becoming the leaderboard result. Confidence intervals report measurement uncertainty, not certainty that one implementation dominates every shape or future runtime. Source hashes and paired checks connect the published file to verification.</p><div class="inline-links"><a class="text-link" href="methodology.html">Read methodology <span aria-hidden="true">→</span></a><a class="text-link" href="experiments.html">Browse 79 attempts <span aria-hidden="true">→</span></a></div></div>
+</section>
+
+<aside class="section shell disclosure-card" aria-labelledby="attribution-title">
+  <div><p class="eyebrow">Provenance matters</p><h2 id="attribution-title">The prefill result includes public Apache-licensed winner work.</h2></div>
+  <p>That source is explicitly attributed as reused public work, not claimed as original authorship. The article and repository provenance record distinguish adaptation and verification from upstream contribution.</p>
+  <a class="button dark" href="kernels/prefill-layer.html#provenance">Read the attribution</a>
+</aside>
+</main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-label">Evidence</p><ul class="footer-links">
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+      </ul></div>
+      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+    </div>
+  </footer>
+</body>
+</html>
