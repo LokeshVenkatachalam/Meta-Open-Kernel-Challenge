@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Static-site development and browser checks
+node_modules/
+playwright-report/
+test-results/
+blob-report/
