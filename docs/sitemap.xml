@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/experiments.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/bf16-projections.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/attention-decode.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/routed-experts.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/decoder-layer.html</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/prefill-layer.html</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/experiments.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/disclosure.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/bf16-projections.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/attention-decode.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/routed-experts.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/decoder-layer.html</loc><lastmod>2026-11-07</lastmod></url>
+  <url><loc>https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/kernels/prefill-layer.html</loc><lastmod>2026-11-07</lastmod></url>
 </urlset>

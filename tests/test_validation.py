@@ -8,9 +8,11 @@ from scripts.validate_publication import (
     ParsedPage,
     finite_number,
     interval,
+    kernel_evidence,
     load_json,
     safe_path,
     timestamp,
+    validate_publication_policy,
     validate_runs,
 )
 
@@ -115,6 +117,78 @@ class DataValidationTests(unittest.TestCase):
         self.assertEqual(page.h1_count, 1)
         self.assertTrue(page.viewport)
         self.assertIn(("a", "other.html#section"), page.links)
+
+
+class DisclosurePolicyTests(unittest.TestCase):
+    def setUp(self):
+        self.jobs = {
+            job_id: {"problem": "muse_prefill_layer", "mode": "run"}
+            for job_id in ("c43f7aba5ae84778", "23b1cc7e2a6040af")
+        }
+        self.results = {
+            "schemaVersion": 2,
+            "campaign": {"closedAt": "2026-11-05T08:00:00+00:00"},
+            "publication": {
+                "workflow": "fully-agentic",
+                "originalityAudit": "incomplete",
+                "excludedProblemIds": ["muse_prefill_layer"],
+                "withdrawnScoredJobIds": list(self.jobs),
+                "withdrawalVerifiedAt": "2026-11-07T09:04:37+00:00",
+                "correctedAt": "2026-11-07T09:04:37+00:00",
+                "disclosurePath": "DISCLOSURE.md",
+                "notice": "AI agents assembled the work; copying was confirmed and originality is not fully audited.",
+            },
+        }
+        self.prefill = {
+            "id": "muse_prefill_layer",
+            "includedInSummary": False,
+            "source": {"originalityStatus": "confirmed-verbatim-copy", "reusedPublicSource": True},
+            "scored": None,
+            "check": None,
+            "ranking": None,
+            "firstCampaignScoredSpeedup": None,
+            "historical": {"scored": {}, "check": {}, "ranking": {}, "firstCampaignScoredSpeedup": 1.7},
+        }
+
+    def test_corrected_policy_preserves_historical_evidence(self):
+        excluded = validate_publication_policy(self.results, self.jobs)
+        self.assertEqual(kernel_evidence(self.prefill, excluded), self.prefill["historical"])
+
+    def test_copied_result_cannot_be_reincluded(self):
+        self.prefill["includedInSummary"] = True
+        with self.assertRaisesRegex(ValueError, "restored"):
+            kernel_evidence(self.prefill, {"muse_prefill_layer"})
+
+    def test_copied_result_cannot_keep_active_score_or_rank(self):
+        for field in ("scored", "check", "ranking", "firstCampaignScoredSpeedup"):
+            candidate = copy.deepcopy(self.prefill)
+            candidate[field] = 1.9
+            with self.assertRaisesRegex(ValueError, "active"):
+                kernel_evidence(candidate, {"muse_prefill_layer"})
+
+    def test_unrelated_withdrawals_are_rejected(self):
+        self.jobs["c43f7aba5ae84778"]["problem"] = "muse_bf16_proj"
+        with self.assertRaisesRegex(ValueError, "another problem"):
+            validate_publication_policy(self.results, self.jobs)
+
+    def test_originality_certification_is_rejected(self):
+        self.results["publication"]["originalityAudit"] = "complete"
+        with self.assertRaisesRegex(ValueError, "Originality"):
+            validate_publication_policy(self.results, self.jobs)
+
+    def test_unaudited_source_cannot_claim_no_copying(self):
+        candidate = {
+            "id": "muse_bf16_proj",
+            "includedInSummary": True,
+            "source": {"originalityStatus": "not-comprehensively-audited", "reusedPublicSource": False},
+        }
+        with self.assertRaisesRegex(ValueError, "unaudited"):
+            kernel_evidence(candidate, {"muse_prefill_layer"})
+
+    def test_legacy_schema_cannot_restore_old_claims(self):
+        self.results["schemaVersion"] = 1
+        with self.assertRaisesRegex(ValueError, "corrected"):
+            validate_publication_policy(self.results, self.jobs)
 
 
 if __name__ == "__main__":

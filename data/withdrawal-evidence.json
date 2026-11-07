@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "scope": "prefill-scored-result-withdrawal",
+  "problemId": "muse_prefill_layer",
+  "actions": [
+    {
+      "jobId": "c43f7aba5ae84778",
+      "action": "scored-result-withdrawn",
+      "confirmedAt": "2026-11-07T09:04:20+00:00"
+    },
+    {
+      "jobId": "23b1cc7e2a6040af",
+      "action": "scored-result-withdrawn",
+      "confirmedAt": "2026-11-07T09:04:22+00:00"
+    }
+  ],
+  "verification": {
+    "verifiedAt": "2026-11-07T09:04:37+00:00",
+    "result": "no-active-prefill-entry-remains"
+  }
+}

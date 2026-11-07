@@ -27,6 +27,8 @@ RUN_FIELDS = {
     "passed", "speedup", "ci95", "scoreUs", "baselineUs",
 }
 TERMINAL = {"done", "failed", "rejected", "duplicate", "cancelled"}
+EXCLUDED_PROBLEMS = {"muse_prefill_layer"}
+WITHDRAWN_JOBS = {"c43f7aba5ae84778", "23b1cc7e2a6040af"}
 SECRET_PATTERNS = {
     "GitHub token": re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})"),
     "private key": re.compile(r"-----BEGIN (?:[A-Z ]+ )?PRIVATE KEY-----"),
@@ -130,10 +132,65 @@ def validate_runs(document, campaign):
     return indexed
 
 
+def validate_publication_policy(results, jobs):
+    require(results["schemaVersion"] == 2, "Results must use the corrected disclosure schema")
+    publication = results["publication"]
+    require(isinstance(publication, dict), "Publication disclosure must be an object")
+    require(publication["workflow"] == "fully-agentic", "The complete agentic workflow must be disclosed")
+    require(publication["originalityAudit"] == "incomplete", "Originality must not be certified without an audit")
+    require(
+        len(publication["excludedProblemIds"]) == 1
+        and set(publication["excludedProblemIds"]) == EXCLUDED_PROBLEMS,
+        "The confirmed copied prefill problem must be excluded",
+    )
+    require(
+        len(publication["withdrawnScoredJobIds"]) == 2
+        and set(publication["withdrawnScoredJobIds"]) == WITHDRAWN_JOBS,
+        "Both copied prefill scored entries must be recorded as withdrawn",
+    )
+    verified = timestamp(publication["withdrawalVerifiedAt"], "Withdrawal verification")
+    corrected = timestamp(publication["correctedAt"], "Correction time")
+    require(corrected >= verified, "Correction cannot predate the verified withdrawal")
+    require(
+        verified >= timestamp(results["campaign"]["closedAt"], "Campaign cutoff"),
+        "Withdrawal observation has an invalid time",
+    )
+    require(publication["disclosurePath"] == "DISCLOSURE.md", "Missing public disclosure path")
+    require(isinstance(publication["notice"], str) and publication["notice"].strip(), "Missing publication notice")
+    for job_id in WITHDRAWN_JOBS:
+        require(job_id in jobs, "Withdrawal refers to an unknown recorded job")
+        require(
+            jobs[job_id]["problem"] == "muse_prefill_layer" and jobs[job_id]["mode"] == "run",
+            "Withdrawal must not apply to another problem or an off-board check",
+        )
+    return EXCLUDED_PROBLEMS
+
+
+def kernel_evidence(kernel, excluded):
+    included = kernel["includedInSummary"]
+    require(type(included) is bool, "Summary inclusion must be explicit")
+    require(included is (kernel["id"] not in excluded), "Excluded result was restored to the summary")
+    source = kernel["source"]
+    if included:
+        require(source["originalityStatus"] == "not-comprehensively-audited", "Retained code must remain originality-uncertain")
+        require(source["reusedPublicSource"] is None, "An unaudited source must not claim no public copying")
+        evidence = kernel
+    else:
+        require(source["originalityStatus"] == "confirmed-verbatim-copy", "Confirmed copying must be explicit")
+        require(source["reusedPublicSource"] is True, "The confirmed public copy must be acknowledged")
+        for field in ("scored", "check", "ranking", "firstCampaignScoredSpeedup"):
+            require(field in kernel and kernel[field] is None, "Excluded result still exposes an active " + field)
+        evidence = kernel["historical"]
+        require(isinstance(evidence, dict), "Excluded result needs clearly separated historical evidence")
+    for field in ("scored", "check", "ranking"):
+        require(isinstance(evidence[field], dict), "Missing recorded evidence block: " + field)
+    finite_number(evidence["firstCampaignScoredSpeedup"], "First historical scored speedup", positive=True)
+    return evidence
+
+
 def validate_data(root):
     results = load_json(root / "docs/data/results.json")
     run_document = load_json(root / "docs/data/runs.json")
-    require(results["schemaVersion"] == 1, "Unsupported results schema")
     campaign = results["campaign"]
     require(campaign["status"] == "closed", "The published campaign must be marked closed")
     require(campaign["gpu"] == "NVIDIA H200" and campaign["localGpuUsed"] is False, "Hardware provenance is wrong")
@@ -143,10 +200,13 @@ def validate_data(root):
     )
     timestamp(results["leaderboardSnapshotAt"], "Leaderboard snapshot")
     jobs = validate_runs(run_document, campaign)
+    excluded = validate_publication_policy(results, jobs)
+    safe_path(root, results["publication"]["disclosurePath"])
     kernels = results["kernels"]
     require(isinstance(kernels, list) and len(kernels) == 5, "Exactly five kernels are required")
     require({item["id"] for item in kernels} == PROBLEMS, "Missing or duplicate kernel")
     require(len({item["slug"] for item in kernels}) == 5, "Duplicate article slug")
+    require(sum(item["includedInSummary"] is True for item in kernels) == 4, "Exactly four results may remain in the summary")
     account_counts = Counter()
     for kernel in kernels:
         problem = kernel["id"]
@@ -161,8 +221,9 @@ def validate_data(root):
             require(account[key] >= actual[key], "Account count is smaller than the campaign")
             account_counts[key] += account[key]
         require(account["runs"] == account["scored"] + account["checks"], "Account count sum is wrong")
-        scored = kernel["scored"]
-        checked = kernel["check"]
+        evidence = kernel_evidence(kernel, excluded)
+        scored = evidence["scored"]
+        checked = evidence["check"]
         for entry, mode in ((scored, "run"), (checked, "check")):
             require(entry["jobId"] in jobs, "Missing referenced job")
             row = jobs[entry["jobId"]]
@@ -174,8 +235,8 @@ def validate_data(root):
         row = jobs[scored["jobId"]]
         require(scored["scoreUs"] == row["scoreUs"] and scored["baselineUs"] == row["baselineUs"], "Scored timing differs from its record")
         first = next(item for item in rows if item["mode"] == "run" and item["passed"] is True and item["speedup"] is not None)
-        require(kernel["firstCampaignScoredSpeedup"] == first["speedup"], "First scored campaign result is wrong")
-        rank = kernel["ranking"]
+        require(evidence["firstCampaignScoredSpeedup"] == first["speedup"], "First scored campaign result is wrong")
+        rank = evidence["ranking"]
         integer(rank["rank"], "Leaderboard rank")
         integer(rank["placed"], "Ranked entry count")
         require(1 <= rank["rank"] <= rank["placed"], "Leaderboard denominator is inconsistent")
@@ -253,7 +314,8 @@ def validate_site(root):
         require(parsed.h1_count == 1, "Each page needs one h1: " + str(path.relative_to(root)))
         require(not parsed.duplicate_ids, "Duplicate HTML IDs in " + str(path.relative_to(root)))
         pages[path.resolve()] = parsed
-    require(len(pages) >= 9, "Homepage, methodology, experiments, five articles and 404 are required")
+    require(len(pages) >= 10, "Homepage, disclosure, methodology, experiments, five articles and 404 are required")
+    require((docs / "disclosure.html").is_file(), "Missing prominent disclosure page")
     for path, page in pages.items():
         for tag, link in page.links:
             parsed = urlsplit(link)
@@ -288,7 +350,7 @@ def validate_public_files(root):
         if path.suffix in {".json", ".md", ".html"}:
             require("/home/lokesh" not in text, "Private workspace path in " + str(relative))
             require(".copilot/session-state/" not in text, "Private session path in " + str(relative))
-    for name in ("README.md", "PERFORMANCE.md", "EXPERIMENTS.md", "PROVENANCE.md", "verified_sources.json", "LICENSE", "NOTICE"):
+    for name in ("README.md", "PERFORMANCE.md", "EXPERIMENTS.md", "PROVENANCE.md", "DISCLOSURE.md", "verified_sources.json", "LICENSE", "NOTICE"):
         safe_path(root, name)
 
 
@@ -300,7 +362,8 @@ def main():
     except (OSError, ValueError, KeyError, TypeError, SyntaxError) as error:
         print("Publication validation failed: " + str(error), file=sys.stderr)
         return 1
-    print("Validated {} exact kernels, {} sanitized runs, and {} static pages.".format(len(results["kernels"]), len(jobs), pages))
+    included = sum(kernel["includedInSummary"] for kernel in results["kernels"])
+    print("Validated {} historical source files, {} included summaries, one excluded copied problem, {} historical runs, and {} static pages.".format(len(results["kernels"]), included, len(jobs), pages))
     return 0
 
 

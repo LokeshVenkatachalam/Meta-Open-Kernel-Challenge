@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found · Hopper Field Notes</title>
-  <meta name="description" content="The requested Hopper Field Notes page could not be found.">
+  <meta name="description" content="The requested corrected Hopper Field Notes page could not be found.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#102a33">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Page not found · Hopper Field Notes">
-  <meta property="og:description" content="The requested Hopper Field Notes page could not be found.">
+  <meta property="og:description" content="The requested corrected Hopper Field Notes page could not be found.">
   <meta property="og:url" content="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/404.html">
   <meta property="og:site_name" content="Hopper Field Notes">
   <meta name="twitter:card" content="summary">
@@ -2290,8 +2290,540 @@ tbody tr:last-child > * {
     overflow: visible;
   }
 }
+
+@media screen {
+  .agentic-notice {
+    color: #fff8f1;
+    background:
+      linear-gradient(120deg, rgba(223, 110, 66, 0.2), transparent 42%),
+      #5b211c;
+    border-bottom: 1px solid #8e493c;
+  }
+
+  .agentic-notice-grid {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1.25rem;
+    align-items: center;
+    padding-block: 1.35rem;
+  }
+
+  .agentic-notice-mark {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    color: #4a1713;
+    background: var(--gold);
+    border-radius: 50%;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .agentic-notice .eyebrow {
+    margin-bottom: 0.35rem;
+    color: #ffd995;
+  }
+
+  .agentic-notice h2 {
+    margin-bottom: 0.45rem;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .agentic-notice p:last-child {
+    max-width: 920px;
+    margin-bottom: 0;
+    color: #f0d7d0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .disclosure-button {
+    color: #4a1713;
+    background: var(--gold);
+    border-color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .disclosure-button:hover {
+    color: #35100d;
+    background: #f2cf89;
+    border-color: #f2cf89;
+  }
+
+  .status-badge.measured {
+    color: var(--teal-dark);
+    background: var(--teal-pale);
+  }
+
+  .originality-note,
+  .article-originality {
+    padding: 0.85rem 1rem;
+    color: #684536 !important;
+    background: #f3dfd1;
+    border-left: 4px solid var(--coral);
+    border-radius: 0 7px 7px 0;
+    font-family: var(--sans) !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .result-card[data-claimed-result]::after {
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.2rem;
+    color: #8c8173;
+    content: "ORIGINALITY UNAUDITED";
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+  }
+
+  .result-card[data-claimed-result] .card-actions {
+    padding-bottom: 1.3rem;
+  }
+
+  .excluded-result {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    margin-block: clamp(4rem, 8vw, 7rem);
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
+    color: #f6e8e2;
+    background:
+      linear-gradient(140deg, rgba(223, 110, 66, 0.18), transparent 52%),
+      #4b1f1b;
+    border: 1px solid #8e493c;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .excluded-result h2 {
+    max-width: 820px;
+    color: var(--white);
+  }
+
+  .excluded-result-copy > p:not(.eyebrow) {
+    color: #e4c9c1;
+  }
+
+  .excluded-result-facts {
+    margin: 0;
+    overflow: hidden;
+    background: rgba(255, 248, 241, 0.08);
+    border: 1px solid rgba(255, 248, 241, 0.2);
+    border-radius: var(--radius-small);
+  }
+
+  .excluded-result-facts div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 248, 241, 0.16);
+  }
+
+  .excluded-result-facts div:last-child {
+    border-bottom: 0;
+  }
+
+  .excluded-result-facts dt {
+    color: #c99f93;
+    font-size: 0.63rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .excluded-result-facts dd {
+    margin: 0;
+    color: var(--white);
+    font-weight: 750;
+    text-align: right;
+  }
+
+  .excluded-notebook {
+    background: #f2ded7;
+    border-color: #c8907d;
+  }
+
+  .excluded-notebook .eyebrow,
+  .excluded-notebook .lesson strong {
+    color: #8d3529;
+  }
+
+  .correction-card {
+    background: #eed9c6;
+    border-color: #c79069;
+  }
+
+  .disposition-cell small,
+  .corrected-source-table td small {
+    display: block;
+    max-width: 240px;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .disposition-badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.27rem 0.52rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.61rem;
+    font-weight: 850;
+    letter-spacing: 0.045em;
+    line-height: 1.25;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .disposition-badge.retained-history {
+    color: var(--teal-dark);
+    background: var(--teal-pale);
+  }
+
+  .disposition-badge.excluded-history {
+    color: #7a5422;
+    background: #f4e3b8;
+  }
+
+  .disposition-badge.withdrawn {
+    color: #8e2e27;
+    background: #f3d9d5;
+  }
+
+  .ledger-table tr[data-result-disposition="withdrawn"] {
+    background: #f5dcd8 !important;
+  }
+
+  .ledger-table tr[data-result-disposition="excluded-history"] {
+    background: #f7ead0 !important;
+  }
+
+  .ledger-table tr[data-result-disposition="withdrawn"] th[scope="row"] {
+    border-left: 4px solid var(--red);
+  }
+
+  .ledger-table tr[data-result-disposition="excluded-history"] th[scope="row"] {
+    border-left: 4px solid #b48735;
+  }
+
+  .corrected-ledger {
+    min-width: 1570px;
+  }
+
+  .corrected-ledger-note {
+    background: #eed9c6;
+    border-color: #c79069;
+  }
+
+  .corrected-source-table {
+    min-width: 1120px;
+  }
+
+  .correction-attribution {
+    background: #f2d8d1;
+    border-color: #c88d7e;
+    border-left-color: var(--red);
+  }
+
+  .archive-ticket {
+    position: relative;
+    padding: 1.7rem;
+    overflow: hidden;
+    color: #f3dfda;
+    background: #4b1f1b;
+    border: 1px solid #8e493c;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .archive-ticket::after {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgba(230, 185, 93, 0.35);
+    border-radius: 50%;
+    content: "";
+  }
+
+  .archive-ticket > strong {
+    display: block;
+    color: var(--white);
+    font-family: var(--serif);
+    font-size: clamp(2.7rem, 6vw, 4.7rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .archive-ticket > p:nth-child(3) {
+    color: #d7b6ad;
+    font-size: 0.78rem;
+  }
+
+  .archive-ticket dl {
+    margin: 1rem 0 0;
+    border-top: 1px solid #7d453c;
+  }
+
+  .archive-ticket dl div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #7d453c;
+  }
+
+  .archive-ticket dt {
+    color: #c79d93;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .archive-ticket dd {
+    margin: 0;
+    color: var(--white);
+    font-weight: 750;
+    text-align: right;
+  }
+
+  .excluded-kernel-article .article-body > section:first-child {
+    padding-top: 0;
+  }
+
+  .copy-evidence-table {
+    min-width: 1050px;
+  }
+
+  .copy-evidence-table td:nth-child(3) code {
+    display: inline-block;
+    min-width: 520px;
+  }
+
+  .disclosure-hero h1 {
+    max-width: 1100px;
+  }
+
+  .disclosure-statement {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(2rem, 7vw, 7rem);
+    align-items: start;
+  }
+
+  .disclosure-statement blockquote {
+    grid-row: span 2;
+    margin: 0;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    color: #f5e7e2;
+    background: #5b211c;
+    border-left: 6px solid var(--coral);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    line-height: 1.6;
+  }
+
+  .disclosure-prose p {
+    color: var(--muted);
+  }
+
+  .correction-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .correction-status-grid article {
+    padding: 1.4rem;
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--coral);
+    border-radius: var(--radius-small);
+  }
+
+  .correction-status-grid span {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .correction-status-grid strong {
+    display: block;
+    margin: 0.35rem 0;
+    color: var(--ink-deep);
+    font-family: var(--serif);
+    font-size: 1.55rem;
+  }
+
+  .correction-status-grid p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .disclosure-limits {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: start;
+  }
+
+  .unaudited-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .unaudited-grid article {
+    min-width: 0;
+    padding: 1.25rem;
+    background: #12313a;
+    border: 1px solid var(--line-dark);
+    border-radius: var(--radius-small);
+  }
+
+  .unaudited-grid h3 {
+    margin-bottom: 0.55rem;
+    font-size: 1.35rem;
+  }
+
+  .unaudited-grid h3 a {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .unaudited-grid article > p:not(.eyebrow) {
+    margin: 0;
+    color: #b7cacc;
+    font-size: 0.78rem;
+  }
+
+  .disclosure-sources {
+    display: grid;
+    grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+    gap: 3rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .source-link-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .source-link-grid a {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem;
+    color: var(--ink);
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    text-decoration: none;
+  }
+
+  .source-link-grid a:hover {
+    color: var(--teal-dark);
+    border-color: var(--teal);
+  }
+
+  .source-link-grid span {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .agentic-notice-grid {
+    grid-template-columns: auto 1fr;
+  }
+
+  .agentic-notice .disclosure-button {
+    grid-column: 2;
+    width: fit-content;
+  }
+
+  .excluded-result,
+  .disclosure-statement,
+  .disclosure-limits,
+  .disclosure-sources {
+    grid-template-columns: 1fr;
+  }
+
+  .disclosure-statement blockquote {
+    grid-row: auto;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .agentic-notice-grid {
+    grid-template-columns: 1fr;
+    padding-block: 1.1rem;
+  }
+
+  .agentic-notice-mark {
+    width: 40px;
+    height: 40px;
+    font-size: 1.55rem;
+  }
+
+  .agentic-notice .disclosure-button {
+    grid-column: auto;
+  }
+
+  .excluded-result {
+    gap: 1.5rem;
+  }
+
+  .excluded-result-facts div,
+  .archive-ticket dl div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .excluded-result-facts dd,
+  .archive-ticket dd {
+    text-align: left;
+  }
+
+  .correction-status-grid,
+  .unaudited-grid,
+  .source-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-card[data-claimed-result]::after {
+    right: 1rem;
+    bottom: 0.9rem;
+  }
+}
 </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Page not found \u00b7 Hopper Field Notes","description":"The requested Hopper Field Notes page could not be found.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/404.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"author":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Page not found \u00b7 Hopper Field Notes","description":"The requested corrected Hopper Field Notes page could not be found.","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/404.html","isPartOf":{"@type":"WebSite","name":"Hopper Field Notes","url":"https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"},"creator":{"@type":"SoftwareApplication","name":"AI-agent workflow"},"publisher":{"@type":"Person","name":"LokeshVenkatachalam"}}</script>
 
 </head>
 <body class="not-found-page">
@@ -2300,33 +2832,44 @@ tbody tr:last-child > * {
     <div class="masthead shell">
       <a class="brand" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html" data-site-route="index.html" aria-label="Hopper Field Notes home">
         <span class="brand-mark" aria-hidden="true">HFN</span>
-        <span><strong>Hopper Field Notes</strong><small>Open kernel research log</small></span>
+        <span><strong>Hopper Field Notes</strong><small>Corrected agentic research log</small></span>
       </a>
-      <nav class="primary-nav" aria-label="Primary navigation"><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html" data-site-route="index.html">Field notes</a><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html" data-site-route="methodology.html">Methodology</a><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/experiments.html" data-site-route="experiments.html">Experiments</a></nav>
+      <nav class="primary-nav" aria-label="Primary navigation"><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html" data-site-route="index.html">Field notes</a><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/methodology.html" data-site-route="methodology.html">Methodology</a><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/experiments.html" data-site-route="experiments.html">Experiments</a><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/disclosure.html" data-site-route="disclosure.html">Disclosure</a></nav>
       <a class="repo-link" href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge">Repository <span aria-hidden="true">↗</span></a>
     </div>
     <div class="closure-strip">
-      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Ranks are provisional at the published snapshot.</span></div>
+      <div class="shell"><strong>Track closed</strong><span>5 Nov 2026, 08:00 UTC. No new challenge runs are being started.</span><span>Four included rankings remain provisional.</span></div>
     </div>
   </header>
+  <aside class="agentic-notice" data-agentic-disclosure aria-labelledby="agentic-disclosure-title">
+    <div class="shell agentic-notice-grid">
+      <span class="agentic-notice-mark" aria-hidden="true">!</span>
+      <div>
+        <p class="eyebrow light">Agentic authorship and originality correction</p>
+        <h2 id="agentic-disclosure-title">This entire project was AI-agent-driven; one result was copied verbatim and withdrawn.</h2>
+        <p>AI agents assembled or adapted kernel code, directed experiments and submissions, and wrote the documentation and website. The work is not independently human-authored or comprehensively originality-audited. Prefill submissions copied complete public kernels unchanged; the other four problems may contain additional copied or adapted code and are not certified original.</p>
+      </div>
+      <a class="button disclosure-button" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/disclosure.html" data-site-route="disclosure.html">Read full disclosure</a>
+    </div>
+  </aside>
   <main id="main" tabindex="-1">
 <section class="not-found shell" aria-labelledby="not-found-title">
-  <p class="error-code">404 · off the measured path</p>
+  <p class="error-code">404 · off the corrected record</p>
   <h1 id="not-found-title">This field note does not exist.</h1>
-  <p>The campaign is closed, but the published notebooks, methodology, and complete experiment ledger are still available.</p>
-  <div class="hero-actions"><a class="button dark" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html" data-site-route="index.html">Return to field notes</a><a class="button outline" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/experiments.html" data-site-route="experiments.html">Browse experiments</a></div>
+  <p>The corrected publication still provides four included measurement notes, one copied-and-withdrawn prefill archive, the full disclosure, and all 79 historical attempts.</p>
+  <div class="hero-actions"><a class="button dark" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/index.html" data-site-route="index.html">Return to field notes</a><a class="button outline" href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/disclosure.html" data-site-route="disclosure.html">Read disclosure</a></div>
 </section>
 </main>
   <footer class="site-footer">
     <div class="shell footer-grid">
-      <div><p class="footer-title">Hopper Field Notes</p><p>Five retained kernels, the full 79-attempt campaign, and the evidence behind every published result.</p></div>
+      <div><p class="footer-title">Hopper Field Notes</p><p>Four included measured results, one copied-and-withdrawn archive, and the unchanged 79-attempt historical record.</p></div>
       <div><p class="footer-label">Evidence</p><ul class="footer-links">
-        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PERFORMANCE.md">Performance report</a></li>
-        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
+        <li><a href="https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/disclosure.html" data-site-route="disclosure.html">Website disclosure</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/DISCLOSURE.md">Disclosure source</a></li>
         <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/PROVENANCE.md">Provenance</a></li>
-        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/LICENSE">License</a></li>
+        <li><a href="https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge/blob/main/EXPERIMENTS.md">Experiment log</a></li>
       </ul></div>
-      <div><p class="footer-label">Publication</p><p>Static HTML from committed JSON. No tracking, CDN, server, or runtime dependency.</p><p class="footer-small">Leaderboard snapshot: <time datetime="2026-11-05T20:28:37Z">5 Nov 2026, 20:28:37 UTC</time></p></div>
+      <div><p class="footer-label">Publication status</p><p>Fully agentic; originality audit incomplete. Source hashes verify bytes, not independent authorship.</p><p class="footer-small">Corrected: <time datetime="2026-11-07T09:04:37+00:00">7 Nov 2026, 09:04:37 UTC</time></p></div>
     </div>
   </footer>
 <script>

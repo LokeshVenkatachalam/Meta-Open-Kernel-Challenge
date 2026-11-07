@@ -1,57 +1,100 @@
 {
-  "formatVersion": 1,
+  "formatVersion": 2,
+  "publication": {
+    "workflow": "fully-agentic",
+    "originalityAudit": "incomplete",
+    "correctedAt": "2026-11-07T09:04:37+00:00",
+    "disclosurePath": "DISCLOSURE.md",
+    "excludedProblemIds": [
+      "muse_prefill_layer"
+    ],
+    "withdrawnScoredJobIds": [
+      "c43f7aba5ae84778",
+      "23b1cc7e2a6040af"
+    ]
+  },
   "campaignStartedAt": "2026-11-05T06:26:06.830+00:00",
   "submissionCutoff": "2026-11-05T08:00:00+00:00",
   "trackStatus": "closed",
   "notes": [
-    "Each published submission.py is byte-identical to the retained verified source.",
-    "sha256 is the plain file SHA-256, not the judge content_hash.",
-    "pairedCheckJobId is associated with the exact retained source and can differ from the highest campaign check.",
-    "Historical reconstructed candidates are not published as authenticated winners.",
-    "All execution evidence came from the official hosted NVIDIA H200 judge; local verification is hash comparison and Python AST parsing only."
+    "The entire workflow - kernel assembly and adaptation, experiments, submissions, documentation, and website - was AI-agent-driven.",
+    "The remaining four included sources have not received a comprehensive originality audit and may contain copied or adapted material.",
+    "Both prefill scored submissions were confirmed byte-for-byte copies of pinned public kernels, were withdrawn, and are excluded from active result summaries.",
+    "Each published submission.py and plain SHA-256 remains unchanged as historical evidence; a hash match is not an originality claim.",
+    "The judge content_hash is not the plain file SHA-256.",
+    "All execution evidence came from the official hosted NVIDIA H200 judge; local verification uses hashes and Python AST parsing only."
   ],
   "kernels": {
     "muse_bf16_proj": {
       "path": "kernels/muse_bf16_proj/submission.py",
       "sha256": "af9c07caaa1227dfe0c6213071f342c2582e02c96440b287a1a8b03e869adfb5",
+      "includedInSummary": true,
       "pairedCheckJobId": "84c15c3cb1bb4f73",
       "scoredJobId": "c9e908a969fc4e40",
-      "reusedPublicSource": false,
+      "reusedPublicSource": null,
+      "originalityStatus": "not-comprehensively-audited",
       "provenancePath": "PROVENANCE.md"
     },
     "muse_attention_decode": {
       "path": "kernels/muse_attention_decode/submission.py",
       "sha256": "ac3a509b872f775619e91084c71e08eea1cfc99aad7630790842b2334ce4ca19",
+      "includedInSummary": true,
       "pairedCheckJobId": "31188b3e4b2d482b",
       "scoredJobId": "b45e9263f36b4141",
-      "reusedPublicSource": false,
+      "reusedPublicSource": null,
+      "originalityStatus": "not-comprehensively-audited",
       "provenancePath": "PROVENANCE.md"
     },
     "muse_moe_w4a16": {
       "path": "kernels/muse_moe_w4a16/submission.py",
       "sha256": "157e907cd37e9060e04a6dfda88cc3bde9cb2af2b4a2824717cecbaf3031106d",
+      "includedInSummary": true,
       "pairedCheckJobId": "7cbc989dbf43455b",
       "scoredJobId": "9c6a4cb6794448ba",
-      "reusedPublicSource": false,
+      "reusedPublicSource": null,
+      "originalityStatus": "not-comprehensively-audited",
       "provenancePath": "PROVENANCE.md"
     },
     "muse_decode_layer": {
       "path": "kernels/muse_decode_layer/submission.py",
       "sha256": "34ae067a20a1c69dd52acfcb52d74e164499de9af7971e78f4e0717a71beddaa",
+      "includedInSummary": true,
       "pairedCheckJobId": "027f7d1e62ed4951",
       "scoredJobId": "9187326d522142a2",
-      "reusedPublicSource": false,
+      "reusedPublicSource": null,
+      "originalityStatus": "not-comprehensively-audited",
       "provenancePath": "PROVENANCE.md"
     },
     "muse_prefill_layer": {
       "path": "kernels/muse_prefill_layer/submission.py",
       "sha256": "f1807a75ec056b7f3874d4fce02331ca0043ac38a45af7710a8287a252421a92",
+      "includedInSummary": false,
       "pairedCheckJobId": "1342300976314ba1",
-      "scoredJobId": "23b1cc7e2a6040af",
+      "scoredJobId": null,
       "reusedPublicSource": true,
+      "originalityStatus": "confirmed-verbatim-copy",
+      "provenancePath": "PROVENANCE.md",
+      "historicalScoredJobIds": [
+        "c43f7aba5ae84778",
+        "23b1cc7e2a6040af"
+      ],
+      "withdrawalEvidencePath": "docs/data/withdrawal.json",
+      "confirmedVerbatimCopies": [
+        {
+          "jobId": "c43f7aba5ae84778",
+          "bytes": 347010,
+          "sha256": "76fb7501371fd3331858795e462ce5d0877e4b6a789a10a7c189fb7a8e5aaaa4",
+          "sourceUrl": "https://github.com/Madhavan113/ParadigmKernelChallenge/blob/721c62729fa0b407799692f311790643706f292d/muse_prefill_layer/submission.py"
+        },
+        {
+          "jobId": "23b1cc7e2a6040af",
+          "bytes": 370116,
+          "sha256": "f1807a75ec056b7f3874d4fce02331ca0043ac38a45af7710a8287a252421a92",
+          "sourceUrl": "https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/kernels/muse_prefill_layer.py"
+        }
+      ],
       "license": "LICENSE",
-      "notice": "NOTICE",
-      "provenancePath": "PROVENANCE.md"
+      "notice": "NOTICE"
     }
   }
 }

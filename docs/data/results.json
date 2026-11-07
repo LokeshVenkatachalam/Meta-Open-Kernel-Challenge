@@ -1,11 +1,26 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "project": {
     "title": "Hopper Field Notes",
     "author": "LokeshVenkatachalam",
     "repositoryUrl": "https://github.com/LokeshVenkatachalam/Meta-Open-Kernel-Challenge",
     "branch": "main",
     "siteUrl": "https://lokeshvenkatachalam.github.io/Meta-Open-Kernel-Challenge/"
+  },
+  "publication": {
+    "workflow": "fully-agentic",
+    "originalityAudit": "incomplete",
+    "correctedAt": "2026-11-07T09:04:37+00:00",
+    "disclosurePath": "DISCLOSURE.md",
+    "excludedProblemIds": [
+      "muse_prefill_layer"
+    ],
+    "withdrawnScoredJobIds": [
+      "c43f7aba5ae84778",
+      "23b1cc7e2a6040af"
+    ],
+    "withdrawalVerifiedAt": "2026-11-07T09:04:37+00:00",
+    "notice": "The entire project workflow - kernel assembly and adaptation, experiments, submissions, documentation, and website - was AI-agent-driven and is not a claim of independent human authorship. Both prefill scored submissions were confirmed as verbatim copies of pinned public kernels and were withdrawn and excluded. The remaining four results have not received a comprehensive originality audit and may contain additional copied or adapted material; their inclusion does not certify originality."
   },
   "leaderboardSnapshotAt": "2026-11-05T20:28:37Z",
   "campaign": {
@@ -30,6 +45,7 @@
       "slug": "bf16-projections",
       "title": "BF16 projections",
       "summary": "Shape-aware Hopper BF16 projection dispatch with accurate router-weight handling and split-major reductions.",
+      "includedInSummary": true,
       "scored": {
         "jobId": "c9e908a969fc4e40",
         "speedup": 1.131876248733277,
@@ -69,7 +85,8 @@
         "sha256": "af9c07caaa1227dfe0c6213071f342c2582e02c96440b287a1a8b03e869adfb5",
         "pairedCheckJobId": "84c15c3cb1bb4f73",
         "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
-        "reusedPublicSource": false,
+        "reusedPublicSource": null,
+        "originalityStatus": "not-comprehensively-audited",
         "provenancePath": "PROVENANCE.md"
       },
       "story": {
@@ -92,7 +109,8 @@
         ],
         "caveats": [
           "The retained dispatch is shape-specific and was measured only through the official challenge shape set on a hosted NVIDIA H200.",
-          "Rank 1510 of 1746 is a provisional public snapshot, not a final award or leaderboard win."
+          "Rank 1510 of 1746 is a provisional public snapshot, not a final award or leaderboard win.",
+          "This fully AI-agent-driven source has not received a comprehensive originality audit and may contain copied or adapted material; inclusion is not a certification of originality."
         ]
       },
       "references": [
@@ -115,6 +133,7 @@
       "slug": "attention-decode",
       "title": "Attention decode",
       "summary": "Fused Q/K preparation and fixed-query FlashAttention-3 scheduling for paged decode attention.",
+      "includedInSummary": true,
       "scored": {
         "jobId": "b45e9263f36b4141",
         "speedup": 1.151975903562266,
@@ -154,7 +173,8 @@
         "sha256": "ac3a509b872f775619e91084c71e08eea1cfc99aad7630790842b2334ce4ca19",
         "pairedCheckJobId": "31188b3e4b2d482b",
         "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
-        "reusedPublicSource": false,
+        "reusedPublicSource": null,
+        "originalityStatus": "not-comprehensively-audited",
         "provenancePath": "PROVENANCE.md"
       },
       "story": {
@@ -177,7 +197,8 @@
         ],
         "caveats": [
           "The fixed-query choice depends on the challenge's uniform query lengths and exact cache contract.",
-          "The ranking is provisional, and this result did not approach or surpass the public leader."
+          "The ranking is provisional, and this result did not approach or surpass the public leader.",
+          "This fully AI-agent-driven source has not received a comprehensive originality audit and may contain copied or adapted material; inclusion is not a certification of originality."
         ]
       },
       "references": [
@@ -200,6 +221,7 @@
       "slug": "routed-experts",
       "title": "Routed experts",
       "summary": "Shape-dependent Marlin routing with fused expert-ID mapping and post-expert normalization and accumulation.",
+      "includedInSummary": true,
       "scored": {
         "jobId": "9c6a4cb6794448ba",
         "speedup": 1.3402887683867017,
@@ -239,7 +261,8 @@
         "sha256": "157e907cd37e9060e04a6dfda88cc3bde9cb2af2b4a2824717cecbaf3031106d",
         "pairedCheckJobId": "7cbc989dbf43455b",
         "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
-        "reusedPublicSource": false,
+        "reusedPublicSource": null,
+        "originalityStatus": "not-comprehensively-audited",
         "provenancePath": "PROVENANCE.md"
       },
       "story": {
@@ -262,7 +285,8 @@
         ],
         "caveats": [
           "Preparation assumes EP8 with local experts 0-31, and the verified timing range ends at 256 routed tokens.",
-          "H200 does not provide Blackwell native NVFP4 tensor-core MMA; the implementation dequantizes for supported Hopper compute."
+          "H200 does not provide Blackwell native NVFP4 tensor-core MMA; the implementation dequantizes for supported Hopper compute.",
+          "This fully AI-agent-driven source has not received a comprehensive originality audit and may contain copied or adapted material; inclusion is not a certification of originality."
         ]
       },
       "references": [
@@ -285,6 +309,7 @@
       "slug": "decoder-layer",
       "title": "Decoder layer",
       "summary": "Whole-layer fusion around attention preparation, expert routing, tuned Marlin blocks, and normalization boundaries.",
+      "includedInSummary": true,
       "scored": {
         "jobId": "9187326d522142a2",
         "speedup": 1.1855883514963717,
@@ -324,7 +349,8 @@
         "sha256": "34ae067a20a1c69dd52acfcb52d74e164499de9af7971e78f4e0717a71beddaa",
         "pairedCheckJobId": "027f7d1e62ed4951",
         "license": "Apache-2.0 with retained attribution for incorporated public kernel work",
-        "reusedPublicSource": false,
+        "reusedPublicSource": null,
+        "originalityStatus": "not-comprehensively-audited",
         "provenancePath": "PROVENANCE.md"
       },
       "story": {
@@ -347,7 +373,8 @@
         ],
         "caveats": [
           "The last check was accepted before the deadline but finished after close and remained off-board; it is not presented as a scored improvement.",
-          "The result is tied to the official H200 shape mix and pinned runtime components, and the rank remains provisional."
+          "The result is tied to the official H200 shape mix and pinned runtime components, and the rank remains provisional.",
+          "This fully AI-agent-driven source has not received a comprehensive originality audit and may contain copied or adapted material; inclusion is not a certification of originality."
         ]
       },
       "references": [
@@ -369,30 +396,11 @@
       "id": "muse_prefill_layer",
       "slug": "prefill-layer",
       "title": "Prefill layer",
-      "summary": "Attributed public Hopper FMHA and persistent grouped W4A16 layer integration retained under its upstream licenses and notices.",
-      "scored": {
-        "jobId": "23b1cc7e2a6040af",
-        "speedup": 1.9191900674402353,
-        "ci95": [
-          1.8904022164286318,
-          1.9479779184518387
-        ],
-        "scoreUs": 201858.01634369078,
-        "baselineUs": 387403.9
-      },
-      "check": {
-        "jobId": "1342300976314ba1",
-        "speedup": 1.9125244996506285,
-        "ci95": [
-          1.883836632155869,
-          1.9412123671453878
-        ]
-      },
-      "ranking": {
-        "rank": 107,
-        "placed": 898,
-        "bestSpeedup": 2.1471
-      },
+      "summary": "Excluded historical prefill record: both scored submissions were confirmed as complete unchanged copies of pinned public kernels and were withdrawn.",
+      "includedInSummary": false,
+      "scored": null,
+      "check": null,
+      "ranking": null,
       "campaignCounts": {
         "scored": 2,
         "checks": 8,
@@ -403,56 +411,79 @@
         "checks": 10,
         "runs": 12
       },
-      "firstCampaignScoredSpeedup": 1.7858992191262522,
+      "firstCampaignScoredSpeedup": null,
       "source": {
         "path": "kernels/muse_prefill_layer/submission.py",
         "sha256": "f1807a75ec056b7f3874d4fce02331ca0043ac38a45af7710a8287a252421a92",
         "pairedCheckJobId": "1342300976314ba1",
-        "license": "Apache-2.0 reused/adapted public source with the full upstream NOTICE and applicable MIT notice retained",
+        "license": "Apache-2.0 confirmed verbatim public-source copy with the full upstream NOTICE and applicable MIT notice retained",
         "reusedPublicSource": true,
+        "originalityStatus": "confirmed-verbatim-copy",
         "provenancePath": "PROVENANCE.md"
       },
       "story": {
         "intro": [
-          "The retained prefill kernel is adapted/reused public work from team keell0renz and its vjeux, alygg77, and ZhimaoL lineages. It is not presented as an independently original kernel.",
-          "The exact retained source beat SGLang by 1.9191900674402353x and placed 107 of 898 in the current provisional snapshot, behind a 2.1471x leader."
+          "This problem is excluded from retained result summaries. Both scored prefill submissions were confirmed as verbatim copies of complete pinned public kernels, not merely inspired or independently authored implementations.",
+          "The measured judge records remain in the immutable historical ledger, while the active score, check, ranking, and progression fields are null after withdrawal and exclusion."
         ],
         "approach": [
-          "The integration combines ZhimaoL's N72 FP8-query FMHA, pinned cuBLASLt dense projection plans, fused layer boundaries, and a persistent grouped W4A16 implementation that losslessly repacks NVFP4 and dequantizes into BF16 WGMMA operands.",
-          "The publication preserves the exact upstream-attributed bytes, full Apache-2.0 license, integrated NOTICE, and transitively applicable NathenFernandes MIT notice text."
+          "Job c43f7aba5ae84778 was byte-for-byte identical to the pinned Madhavan113 public submission, and job 23b1cc7e2a6040af was byte-for-byte identical to the pinned team keell0renz public kernel.",
+          "The published final submission.py bytes and upstream licenses are retained only as historical source evidence."
         ],
         "lessons": [
-          "The public N72 FMHA and LT2 integration raised the campaign from a first scored 1.7859x result to 1.9192x.",
-          "Long full-context attention improved materially, leaving the persistent grouped expert GEMM as the dominant measured primitive on the largest token counts.",
-          "Later tuning checks were regressions and are documented as such rather than relabeled as winners."
+          "Licensing permission, source attribution, originality, and organizer eligibility are distinct questions.",
+          "Hash and correctness verification prove byte identity and measured execution, not authorship.",
+          "Later tuning measurements do not convert the unchanged copied scored kernels into authored achievements."
         ],
         "failures": [
-          "Spread expert tile ordering on the retained base reached 1.9069x, below the exact public source.",
-          "A fresh-thread context wrapper reached 1.9023x, and separating the large-M expert phases reached 1.8915x; neither beat the retained source."
+          "The earlier publication described the final public source as adapted or reused but did not state clearly enough that both scored prefill entries were complete unchanged copies.",
+          "That presentation has been corrected: both scored jobs are withdrawn and the problem is excluded from active performance summaries."
         ],
         "caveats": [
-          "This source is public licensed reuse, not an original-authorship claim. The upstream copyright and attribution notices remain controlling for incorporated portions.",
-          "The campaign did not prove a new local tuning improvement over the retained keell0renz source, and the ranking is provisional."
+          "No claim is made that organizers issued a ban, disqualification, originality ruling, or eligibility approval.",
+          "This public correction addresses organizers and readers but does not claim that a private organizer message was sent."
         ]
       },
       "references": [
         {
-          "label": "Open Kernel Challenge problem",
-          "url": "https://openkernelchallenge.dev/problems/muse_prefill_layer"
+          "label": "Pinned Madhavan113 source copied by first scored job",
+          "url": "https://github.com/Madhavan113/ParadigmKernelChallenge/blob/721c62729fa0b407799692f311790643706f292d/muse_prefill_layer/submission.py"
         },
         {
-          "label": "Pinned keell0renz source",
+          "label": "Pinned keell0renz source copied by final scored job",
           "url": "https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/kernels/muse_prefill_layer.py"
         },
         {
           "label": "Pinned upstream NOTICE",
           "url": "https://github.com/keell0renz/muse-open-kernel-challenge/blob/890809cee421500b00126d084e81b338ef9181ab/NOTICE"
-        },
-        {
-          "label": "ZhimaoL SGLang FMHA lineage",
-          "url": "https://github.com/ZhimaoL/sglang"
         }
-      ]
+      ],
+      "historical": {
+        "scored": {
+          "jobId": "23b1cc7e2a6040af",
+          "speedup": 1.9191900674402353,
+          "ci95": [
+            1.8904022164286318,
+            1.9479779184518387
+          ],
+          "scoreUs": 201858.01634369078,
+          "baselineUs": 387403.9
+        },
+        "check": {
+          "jobId": "1342300976314ba1",
+          "speedup": 1.9125244996506285,
+          "ci95": [
+            1.883836632155869,
+            1.9412123671453878
+          ]
+        },
+        "ranking": {
+          "rank": 107,
+          "placed": 898,
+          "bestSpeedup": 2.1471
+        },
+        "firstCampaignScoredSpeedup": 1.7858992191262522
+      }
     }
   ]
 }
